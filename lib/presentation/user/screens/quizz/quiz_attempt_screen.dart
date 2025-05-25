@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
-import 'package:quizdioms/presentation/user/screens/quizz/quizz_result_screen.dart';
 import 'package:confetti/confetti.dart';
-import 'package:lottie/lottie.dart';
 
 class QuizAttemptScreen extends ConsumerStatefulWidget {
   final Quiz quiz;

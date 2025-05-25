@@ -7,7 +7,7 @@ import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/widgets
 import 'package:uuid/uuid.dart';
 
 class AddQuizScreen extends ConsumerStatefulWidget {
-  const AddQuizScreen({Key? key}) : super(key: key);
+  const AddQuizScreen({super.key});
 
   @override
   ConsumerState<AddQuizScreen> createState() => _AddQuizScreenState();

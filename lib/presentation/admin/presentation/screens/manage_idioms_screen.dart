@@ -46,9 +46,6 @@ class ManageIdiomsScreen extends ConsumerWidget {
               itemCount: groups.length,
               itemBuilder: (_, index) {
                 final group = groups[index];
-                print('I am group here');
-                print(group.idioms.map((e) => e.toJson()));
-
                 return Card(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

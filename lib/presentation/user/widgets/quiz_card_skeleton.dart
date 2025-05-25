@@ -1,10 +1,8 @@
-// lib/presentation/user/widgets/quiz_card_skeleton.dart
-
 import 'package:flutter/material.dart';
 import 'package:quizdioms/presentation/user/widgets/skeleton_loader.dart';
 
 class QuizCardSkeleton extends StatelessWidget {
-  const QuizCardSkeleton({Key? key}) : super(key: key);
+  const QuizCardSkeleton({super.key});
 
   @override
   Widget build(BuildContext context) {

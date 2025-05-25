@@ -1,5 +1,3 @@
-// lib/features/admin/manage_quizzes/domain/entities/quiz.dart
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'question.dart';
 

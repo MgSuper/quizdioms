@@ -1,5 +1,3 @@
-// lib/features/admin/manage_quizzes/data/repositories/quiz_repository_impl.dart
-
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/repositories/quiz_repository.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/data/datasources/quiz_remote_data_source.dart';

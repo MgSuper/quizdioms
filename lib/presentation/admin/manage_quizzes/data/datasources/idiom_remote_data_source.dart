@@ -13,18 +13,13 @@ class IdiomRemoteDataSourceImpl implements IdiomRemoteDataSource {
 
   @override
   Future<void> addIdiomGroup(IdiomGroup group) async {
-    print('hello ???');
     final collection = firestore.collection('idioms');
 
-    // await collection.doc(group.id).set(group.toFirestore());
-
     try {
-      print('Writing idioms to Firestore...');
       await collection.doc(group.id).set(group.toFirestore());
-      print('Success ✅');
-    } catch (e, st) {
-      print('🔥 Firestore error: $e');
-      print(st);
+    } catch (e) {
+      // print('🔥 Firestore error: $e');
+      // print(st);
     }
   }
 
@@ -40,7 +35,7 @@ class IdiomRemoteDataSourceImpl implements IdiomRemoteDataSource {
         return idiomGroupFromFirestore(doc.data(), doc.id);
       }).toList();
     } catch (e) {
-      print('🔥 Firestore error: $e');
+      // print('🔥 Firestore error: $e');
     }
     return [];
   }

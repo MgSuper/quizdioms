@@ -1,56 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
-
-// class QuizResultScreen extends StatelessWidget {
-//   final Quiz quiz;
-//   final int correctAnswers;
-
-//   const QuizResultScreen({
-//     super.key,
-//     required this.quiz,
-//     required this.correctAnswers,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final totalQuestions = quiz.questions.length;
-//     final scorePercentage = (correctAnswers / totalQuestions) * 100;
-
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Quiz Result'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             Text(
-//               'You answered $correctAnswers out of $totalQuestions questions correctly!',
-//               style: TextStyle(fontSize: 20),
-//             ),
-//             SizedBox(height: 20),
-//             Text(
-//               'Your Score: ${scorePercentage.toStringAsFixed(2)}%',
-//               style: TextStyle(fontSize: 18),
-//             ),
-//             SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Navigate back to the quiz list or home screen
-//                 Navigator.popUntil(
-//                     context, ModalRoute.withName('/user/quizzes'));
-//               },
-//               child: Text('Back to Quizzes'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// lib/presentation/user/screens/quizz/quiz_result_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -70,8 +17,6 @@ class QuizResultScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('quiz ${quiz.questions.length}');
-    print('correctAnswers $correctAnswers');
     final totalQuestions = quiz.questions.length;
     final score = ((correctAnswers / totalQuestions) * 100).round();
 

@@ -1,4 +1,3 @@
-// lib/presentation/routes/app_router.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,13 +9,11 @@ import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/screens
 import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/screens/edit_quiz_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/add_idioms_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/admin_dashboard_screen.dart';
-import 'package:quizdioms/presentation/admin/presentation/screens/admin_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/edit_idioms_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/manage_idioms_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/manage_quizzes_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/manage_quotes_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/user_list_screen.dart';
-import 'package:quizdioms/presentation/home/presentation/screens/home_screen.dart';
 import 'package:quizdioms/presentation/onboarding/landing_screen.dart';
 import 'package:quizdioms/presentation/providers/auth_provider.dart';
 import 'package:quizdioms/presentation/user/auth/sign_in_screen.dart';
@@ -43,11 +40,11 @@ class GoRouterAuthNotifier extends ChangeNotifier {
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   final routerNotifier = GoRouterAuthNotifier(ref);
-  final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  final _shellNavigatorKey = GlobalKey<NavigatorState>();
+  final rootNavigatorKey = GlobalKey<NavigatorState>();
+  final shellNavigatorKey = GlobalKey<NavigatorState>();
 
   return GoRouter(
-    navigatorKey: _rootNavigatorKey,
+    navigatorKey: rootNavigatorKey,
     initialLocation: '/',
     debugLogDiagnostics: true,
     refreshListenable: routerNotifier,
@@ -66,7 +63,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         builder: (_, __) => const SignUpScreen(),
       ),
       ShellRoute(
-        navigatorKey: _shellNavigatorKey,
+        navigatorKey: shellNavigatorKey,
         builder: (context, state, child) => UserBottomNavScaffold(child: child),
         routes: [
           GoRoute(

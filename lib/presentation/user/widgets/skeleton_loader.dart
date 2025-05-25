@@ -1,5 +1,3 @@
-// lib/presentation/widgets/skeleton_loader.dart
-
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -9,11 +7,11 @@ class SkeletonLoader extends StatelessWidget {
   final BorderRadius borderRadius;
 
   const SkeletonLoader({
-    Key? key,
+    super.key,
     this.height = 16.0,
     this.width = double.infinity,
     this.borderRadius = const BorderRadius.all(Radius.circular(8.0)),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,3 @@
-// lib/presentation/user/screens/quizz/quizz_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +9,7 @@ import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class QuizzScreen extends ConsumerWidget {
-  const QuizzScreen({Key? key}) : super(key: key);
+  const QuizzScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

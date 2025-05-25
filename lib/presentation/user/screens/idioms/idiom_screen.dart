@@ -139,7 +139,7 @@ class SkeletonPlaceholder extends StatelessWidget {
     return Container(
       height: 72,
       decoration: BoxDecoration(
-        color: Colors.grey.shade300.withOpacity(0.3),
+        color: Colors.grey.shade300.withAlpha(3),
         borderRadius: BorderRadius.circular(16),
       ),
     );

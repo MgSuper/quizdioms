@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "341565679686",
+    "project_id": "quizdioms",
+    "storage_bucket": "quizdioms.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341565679686:android:b7bb82c741382f0b64c247",
+        "android_client_info": {
+          "package_name": "com.io.quizdioms.quizdioms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_yMWDA3O-2oQ_paGDhITKqN6v_CjKODo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

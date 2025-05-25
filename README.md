@@ -1,16 +1,47 @@
-# quizdioms
+# 📘 Quizdioms - Flutter Learning App
 
-A new Flutter project.
+Quizdioms is a mobile application built with Flutter that allows users to:
 
-## Getting Started
+- Practice quizzes
+- Learn idioms and phrases
+- Track their learning performance
 
-This project is a starting point for a Flutter application.
+## 🔧 Tech Stack
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter
+- Firebase Auth & Firestore
+- Riverpod & Hooks
+- GoRouter
+- Freezed & JSON Serializable
+- FlipCard UI
+- Clean Architecture
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📦 Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### ✅ Admin Panel
+
+- Add/edit/delete quizzes
+- Add idiom groups (3 idioms per group)
+- Add quotes and phrases (coming soon)
+
+### ✅ User Panel
+
+- Take quizzes with scores
+- Swipe through idioms in flip-card UI
+- Track learned idioms (stored in Firestore)
+- Bottom navigation for idioms, phrases, performance, and profile
+
+## 📂 Project Structure
+
+```bash
+lib/
+├── presentation/
+│   ├── admin/
+│   ├── user/
+│   ├── routes/
+│   ├── widgets/
+├── data/
+├── domain/
+├── services/
+├── main.dart
+```

@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build web
-        run: flutter build web --release
+      - name: Build web with base href
+        run: flutter build web --release --base-href=/quizdioms/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

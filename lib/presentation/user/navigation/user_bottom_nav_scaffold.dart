@@ -33,84 +33,73 @@ class UserBottomNavScaffold extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: child,
-        bottomNavigationBar: RBottomNavigationBar(currentIndex: currentIndex),
+        body: Row(
+          children: [
+            if (MediaQuery.of(context).size.width >= 640)
+              NavigationRail(
+                  backgroundColor: Colors.transparent,
+                  destinations: const [
+                    NavigationRailDestination(
+                        icon: Icon(Icons.quiz), label: Text('Quizz')),
+                    NavigationRailDestination(
+                        icon: Icon(Icons.book), label: Text('Idioms')),
+                    NavigationRailDestination(
+                        icon: Icon(Icons.chat), label: Text('Phrases')),
+                    NavigationRailDestination(
+                        icon: Icon(Icons.bar_chart),
+                        label: Text('Performance')),
+                    NavigationRailDestination(
+                        icon: Icon(Icons.person), label: Text('Profile')),
+                  ],
+                  selectedIndex: currentIndex),
+            Expanded(child: child)
+          ],
+        ),
+        bottomNavigationBar: MediaQuery.of(context).size.width < 640
+            ? BottomNavigationBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                selectedLabelStyle: TextStyle(
+                  color: Color(0xFFD8E2E4),
+                ),
+                unselectedItemColor: Color(0xFFD8E2E4),
+                selectedItemColor: Color(0xFF316E79),
+                currentIndex: currentIndex,
+                onTap: (index) {
+                  switch (index) {
+                    case 0:
+                      context.go('/user/quizzes');
+                      break;
+                    case 1:
+                      context.go('/user/idioms');
+                      break;
+                    case 2:
+                      context.go('/user/phrases');
+                      break;
+                    case 3:
+                      context.go('/user/performance');
+                      break;
+                    case 4:
+                      context.go('/user/profile');
+                      break;
+                  }
+                },
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.quiz), label: 'Quizz'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.book), label: 'Idioms'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.chat), label: 'Phrases'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.bar_chart), label: 'Performance'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.person), label: 'Profile'),
+                ],
+                type: BottomNavigationBarType.fixed,
+              )
+            : null,
       ),
-    );
-  }
-}
-
-class RBottomNavigationBar extends StatelessWidget {
-  const RBottomNavigationBar({
-    super.key,
-    required this.currentIndex,
-  });
-
-  final int currentIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      selectedLabelStyle: TextStyle(
-        color: Color(0xFFD8E2E4),
-      ),
-      unselectedItemColor: Color(0xFFD8E2E4),
-      selectedItemColor: Color(0xFF316E79),
-      currentIndex: currentIndex,
-      onTap: (index) {
-        switch (index) {
-          case 0:
-            context.go('/user/quizzes');
-            break;
-          case 1:
-            context.go('/user/idioms');
-            break;
-          case 2:
-            context.go('/user/phrases');
-            break;
-          case 3:
-            context.go('/user/performance');
-            break;
-          case 4:
-            context.go('/user/profile');
-            break;
-        }
-      },
-      items: const [
-        BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Icon(Icons.quiz),
-            ),
-            label: 'Quizz'),
-        BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Icon(Icons.book),
-            ),
-            label: 'Idioms'),
-        BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Icon(Icons.chat),
-            ),
-            label: 'Phrases'),
-        BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Icon(Icons.bar_chart),
-            ),
-            label: 'Performance'),
-        BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: Icon(Icons.person),
-            ),
-            label: 'Profile'),
-      ],
-      type: BottomNavigationBarType.fixed,
     );
   }
 }

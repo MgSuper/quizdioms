@@ -38,6 +38,21 @@ class UserBottomNavScaffold extends StatelessWidget {
             if (MediaQuery.of(context).size.width >= 640)
               NavigationRail(
                   backgroundColor: Colors.transparent,
+                  selectedIconTheme:
+                      const IconThemeData(size: 28, color: Color(0xFF316E79)),
+                  unselectedIconTheme:
+                      const IconThemeData(size: 24, color: Color(0xFFD8E2E4)),
+                  selectedLabelTextStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF316E79),
+                  ),
+                  unselectedLabelTextStyle: const TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFFD8E2E4),
+                  ),
+                  labelType: NavigationRailLabelType.all,
+                  extended: false,
                   destinations: const [
                     NavigationRailDestination(
                         icon: Icon(Icons.quiz), label: Text('Quizz')),
@@ -51,7 +66,26 @@ class UserBottomNavScaffold extends StatelessWidget {
                     NavigationRailDestination(
                         icon: Icon(Icons.person), label: Text('Profile')),
                   ],
-                  selectedIndex: currentIndex),
+                  selectedIndex: currentIndex,
+                  onDestinationSelected: (index) {
+                    switch (index) {
+                      case 0:
+                        context.go('/user/quizzes');
+                        break;
+                      case 1:
+                        context.go('/user/idioms');
+                        break;
+                      case 2:
+                        context.go('/user/phrases');
+                        break;
+                      case 3:
+                        context.go('/user/performance');
+                        break;
+                      case 4:
+                        context.go('/user/profile');
+                        break;
+                    }
+                  }),
             Expanded(child: child)
           ],
         ),

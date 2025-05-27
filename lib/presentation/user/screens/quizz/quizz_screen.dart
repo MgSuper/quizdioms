@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,8 @@ class QuizzScreen extends ConsumerWidget {
               data: (scoreMap) {
                 return AnimationLimiter(
                   child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
+                    padding:
+                        kIsWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
                     itemCount: quizzes.length,
                     itemBuilder: (context, index) {
                       final quiz = quizzes[index];

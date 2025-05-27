@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,45 +35,66 @@ class UserBottomNavScaffold extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: child,
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          selectedLabelStyle: TextStyle(
-            color: Color(0xFFD8E2E4),
-          ),
-          unselectedItemColor: Color(0xFFD8E2E4),
-          selectedItemColor: Color(0xFF316E79),
-          currentIndex: currentIndex,
-          onTap: (index) {
-            switch (index) {
-              case 0:
-                context.go('/user/quizzes');
-                break;
-              case 1:
-                context.go('/user/idioms');
-                break;
-              case 2:
-                context.go('/user/phrases');
-                break;
-              case 3:
-                context.go('/user/performance');
-                break;
-              case 4:
-                context.go('/user/profile');
-                break;
-            }
-          },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.quiz), label: 'Quizz'),
-            BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Idioms'),
-            BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Phrases'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.bar_chart), label: 'Performance'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
-          type: BottomNavigationBarType.fixed,
-        ),
+        bottomNavigationBar: kIsWeb
+            ? Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 640),
+                  child: RBottomNavigationBar(currentIndex: currentIndex),
+                ),
+              )
+            : RBottomNavigationBar(currentIndex: currentIndex),
       ),
+    );
+  }
+}
+
+class RBottomNavigationBar extends StatelessWidget {
+  const RBottomNavigationBar({
+    super.key,
+    required this.currentIndex,
+  });
+
+  final int currentIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      selectedLabelStyle: TextStyle(
+        color: Color(0xFFD8E2E4),
+      ),
+      unselectedItemColor: Color(0xFFD8E2E4),
+      selectedItemColor: Color(0xFF316E79),
+      currentIndex: currentIndex,
+      onTap: (index) {
+        switch (index) {
+          case 0:
+            context.go('/user/quizzes');
+            break;
+          case 1:
+            context.go('/user/idioms');
+            break;
+          case 2:
+            context.go('/user/phrases');
+            break;
+          case 3:
+            context.go('/user/performance');
+            break;
+          case 4:
+            context.go('/user/profile');
+            break;
+        }
+      },
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.quiz), label: 'Quizz'),
+        BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Idioms'),
+        BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Phrases'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.bar_chart), label: 'Performance'),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      ],
+      type: BottomNavigationBarType.fixed,
     );
   }
 }

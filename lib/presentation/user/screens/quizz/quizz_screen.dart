@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/providers/quiz_controller.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
-import 'package:quizdioms/presentation/user/navigation/user_bottom_nav_scaffold.dart';
 import 'package:quizdioms/presentation/user/screens/providers/user_quiz_score_provider.dart';
 import 'package:quizdioms/presentation/user/widgets/quiz_card_skeleton.dart';
 import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';

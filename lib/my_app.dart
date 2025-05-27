@@ -22,7 +22,7 @@ class MyApp extends ConsumerWidget {
           seedColor: Colors.indigo,
           brightness: Brightness.light, // ✅ match!
         ),
-        textTheme: GoogleFonts.poppinsTextTheme(),
+        textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
         // scaffoldBackgroundColor: Colors.transparent,
         appBarTheme: AppBarTheme(
           // backgroundColor: Colors.transparent,

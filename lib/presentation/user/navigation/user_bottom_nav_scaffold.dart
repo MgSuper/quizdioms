@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,12 +34,7 @@ class UserBottomNavScaffold extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: child,
-        bottomNavigationBar: kIsWeb
-            ? ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 640),
-                child: RBottomNavigationBar(currentIndex: currentIndex),
-              )
-            : RBottomNavigationBar(currentIndex: currentIndex),
+        bottomNavigationBar: RBottomNavigationBar(currentIndex: currentIndex),
       ),
     );
   }
@@ -85,12 +79,36 @@ class RBottomNavigationBar extends StatelessWidget {
         }
       },
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.quiz), label: 'Quizz'),
-        BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Idioms'),
-        BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Phrases'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart), label: 'Performance'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+            icon: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(Icons.quiz),
+            ),
+            label: 'Quizz'),
+        BottomNavigationBarItem(
+            icon: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(Icons.book),
+            ),
+            label: 'Idioms'),
+        BottomNavigationBarItem(
+            icon: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(Icons.chat),
+            ),
+            label: 'Phrases'),
+        BottomNavigationBarItem(
+            icon: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(Icons.bar_chart),
+            ),
+            label: 'Performance'),
+        BottomNavigationBarItem(
+            icon: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(Icons.person),
+            ),
+            label: 'Profile'),
       ],
       type: BottomNavigationBarType.fixed,
     );

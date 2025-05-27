@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quizdioms/presentation/admin/presentation/widgets/admin_dashboard_card.dart';
 import 'package:quizdioms/presentation/providers/auth_provider.dart';
 import 'package:quizdioms/presentation/routes/app_router.dart';
+import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 
 class AdminDashboardScreen extends ConsumerWidget {
   const AdminDashboardScreen({super.key});
@@ -63,26 +64,28 @@ class AdminDashboardScreen extends ConsumerWidget {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: GridView.builder(
-            itemCount: items.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // Two cards per row
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 8,
-              childAspectRatio: 1.5,
+        body: ResponsiveWrapper(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: GridView.builder(
+              itemCount: items.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Two cards per row
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 8,
+                childAspectRatio: 1.5,
+              ),
+              itemBuilder: (context, index) {
+                final item = items[index];
+                return AdminDashboardCard(
+                  title: item.title,
+                  icon: item.icon,
+                  onTap: () {
+                    ref.read(goRouterProvider).push(item.route);
+                  },
+                );
+              },
             ),
-            itemBuilder: (context, index) {
-              final item = items[index];
-              return AdminDashboardCard(
-                title: item.title,
-                icon: item.icon,
-                onTap: () {
-                  ref.read(goRouterProvider).push(item.route);
-                },
-              );
-            },
           ),
         ),
       ),

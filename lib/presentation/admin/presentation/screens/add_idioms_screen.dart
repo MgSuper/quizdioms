@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/data/models/idioms.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/providers/idiom_controller.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/providers/idiom_list_provider.dart';
+import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 
 class AddIdiomsScreen extends ConsumerStatefulWidget {
   const AddIdiomsScreen({super.key});
@@ -82,70 +83,72 @@ class _AddIdiomsScreenState extends ConsumerState<AddIdiomsScreen> {
           title: const Text('Add Idioms Group'),
           backgroundColor: Colors.transparent,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: [
-                const SizedBox(height: 16),
-                TextFormField(
-                  style: const TextStyle(color: Color(0xFFD8E2E4)),
-                  controller: _groupNameController,
-                  decoration: const InputDecoration(labelText: 'Group Name'),
-                  validator: (val) =>
-                      val == null || val.isEmpty ? 'Required' : null,
-                ),
-                const SizedBox(height: 16),
-                for (int i = 0; i < 3; i++) ...[
-                  Text('Idiom ${i + 1}',
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 8),
-                  TextFormField(
-                    cursorColor: Color(0xFFD8E2E4),
-                    style: const TextStyle(color: Color(0xFFD8E2E4)),
-                    controller: _textControllers[i],
-                    decoration: const InputDecoration(labelText: 'Idiom'),
-                    validator: (val) =>
-                        val == null || val.isEmpty ? 'Required' : null,
-                  ),
-                  const SizedBox(height: 8),
+        body: ResponsiveWrapper(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: ListView(
+                children: [
+                  const SizedBox(height: 16),
                   TextFormField(
                     style: const TextStyle(color: Color(0xFFD8E2E4)),
-                    cursorColor: Color(0xFFD8E2E4),
-                    controller: _meaningControllers[i],
-                    decoration: const InputDecoration(labelText: 'Meaning'),
-                    validator: (val) =>
-                        val == null || val.isEmpty ? 'Required' : null,
-                  ),
-                  const SizedBox(height: 8),
-                  TextFormField(
-                    style: const TextStyle(color: Color(0xFFD8E2E4)),
-                    cursorColor: Color(0xFFD8E2E4),
-                    controller: _usageControllers[i],
-                    decoration: const InputDecoration(labelText: 'Usage'),
+                    controller: _groupNameController,
+                    decoration: const InputDecoration(labelText: 'Group Name'),
                     validator: (val) =>
                         val == null || val.isEmpty ? 'Required' : null,
                   ),
                   const SizedBox(height: 16),
-                ],
-                ElevatedButton(
-                  onPressed: state.isLoading ? null : _handleSubmit,
-                  child: state.isLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : const Text('Add Idioms'),
-                ),
-                if (state.hasError)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text('Error: ${state.error}',
-                        style: const TextStyle(color: Colors.red)),
+                  for (int i = 0; i < 3; i++) ...[
+                    Text('Idiom ${i + 1}',
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      cursorColor: Color(0xFFD8E2E4),
+                      style: const TextStyle(color: Color(0xFFD8E2E4)),
+                      controller: _textControllers[i],
+                      decoration: const InputDecoration(labelText: 'Idiom'),
+                      validator: (val) =>
+                          val == null || val.isEmpty ? 'Required' : null,
+                    ),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      style: const TextStyle(color: Color(0xFFD8E2E4)),
+                      cursorColor: Color(0xFFD8E2E4),
+                      controller: _meaningControllers[i],
+                      decoration: const InputDecoration(labelText: 'Meaning'),
+                      validator: (val) =>
+                          val == null || val.isEmpty ? 'Required' : null,
+                    ),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      style: const TextStyle(color: Color(0xFFD8E2E4)),
+                      cursorColor: Color(0xFFD8E2E4),
+                      controller: _usageControllers[i],
+                      decoration: const InputDecoration(labelText: 'Usage'),
+                      validator: (val) =>
+                          val == null || val.isEmpty ? 'Required' : null,
+                    ),
+                    const SizedBox(height: 16),
+                  ],
+                  ElevatedButton(
+                    onPressed: state.isLoading ? null : _handleSubmit,
+                    child: state.isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Text('Add Idioms'),
                   ),
-              ],
+                  if (state.hasError)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text('Error: ${state.error}',
+                          style: const TextStyle(color: Colors.red)),
+                    ),
+                ],
+              ),
             ),
           ),
         ),

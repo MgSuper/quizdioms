@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/providers/idiom_list_provider.dart';
+import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 
 class ManageIdiomsScreen extends ConsumerWidget {
   const ManageIdiomsScreen({super.key});
@@ -36,50 +37,52 @@ class ManageIdiomsScreen extends ConsumerWidget {
             ),
           ],
         ),
-        body: idiomGroups.when(
-          data: (groups) {
-            if (groups.isEmpty) {
-              return const Center(child: Text('No idiom groups yet.'));
-            }
+        body: ResponsiveWrapper(
+          child: idiomGroups.when(
+            data: (groups) {
+              if (groups.isEmpty) {
+                return const Center(child: Text('No idiom groups yet.'));
+              }
 
-            return ListView.builder(
-              itemCount: groups.length,
-              itemBuilder: (_, index) {
-                final group = groups[index];
-                return Card(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: ListTile(
-                    title: Text(
-                      group.groupName,
-                      style: TextStyle(
-                        color: Color(0xFF316E79),
+              return ListView.builder(
+                itemCount: groups.length,
+                itemBuilder: (_, index) {
+                  final group = groups[index];
+                  return Card(
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: ListTile(
+                      title: Text(
+                        group.groupName,
+                        style: TextStyle(
+                          color: Color(0xFF316E79),
+                        ),
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () {
+                              context.push('/admin/manage-idioms/edit-idiom',
+                                  extra: group);
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () =>
+                                _confirmDelete(context, ref, group.id),
+                          ),
+                        ],
                       ),
                     ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {
-                            context.push('/admin/manage-idioms/edit-idiom',
-                                extra: group);
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () =>
-                              _confirmDelete(context, ref, group.id),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, st) => Center(child: Text('Error: $e')),
+                  );
+                },
+              );
+            },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (e, st) => Center(child: Text('Error: $e')),
+          ),
         ),
       ),
     );

@@ -36,11 +36,9 @@ class UserBottomNavScaffold extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: child,
         bottomNavigationBar: kIsWeb
-            ? Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 640),
-                  child: RBottomNavigationBar(currentIndex: currentIndex),
-                ),
+            ? ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 640),
+                child: RBottomNavigationBar(currentIndex: currentIndex),
               )
             : RBottomNavigationBar(currentIndex: currentIndex),
       ),

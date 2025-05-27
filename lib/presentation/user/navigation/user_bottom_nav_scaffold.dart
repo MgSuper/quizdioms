@@ -39,20 +39,19 @@ class UserBottomNavScaffold extends StatelessWidget {
               NavigationRail(
                   backgroundColor: Colors.transparent,
                   selectedIconTheme:
-                      const IconThemeData(size: 28, color: Color(0xFF316E79)),
+                      const IconThemeData(size: 28, color: Color(0xFF88D4B8)),
                   unselectedIconTheme:
                       const IconThemeData(size: 24, color: Color(0xFFD8E2E4)),
                   selectedLabelTextStyle: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF316E79),
+                    color: Color(0xFF88D4B8), // Light minty green
                   ),
                   unselectedLabelTextStyle: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFD8E2E4),
                   ),
                   labelType: NavigationRailLabelType.all,
-                  extended: false,
                   destinations: const [
                     NavigationRailDestination(
                         icon: Icon(Icons.quiz), label: Text('Quizz')),

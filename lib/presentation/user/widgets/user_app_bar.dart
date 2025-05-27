@@ -39,24 +39,34 @@ class RAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+    final padding = isWeb
+        ? const EdgeInsets.symmetric(horizontal: 32)
+        : const EdgeInsets.symmetric(horizontal: 16);
     return AppBar(
       backgroundColor: Colors.transparent,
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Color(0xFFD8E2E4),
+      title: Padding(
+        padding: padding,
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Color(0xFFD8E2E4),
+          ),
         ),
       ),
       centerTitle: false,
       actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.logout,
-            color: Color(0xFFD8E2E4),
+        Padding(
+          padding: padding,
+          child: IconButton(
+            icon: const Icon(
+              Icons.logout,
+              color: Color(0xFFD8E2E4),
+            ),
+            onPressed: () async {
+              await ref.read(authControllerProvider.notifier).signOut();
+            },
           ),
-          onPressed: () async {
-            await ref.read(authControllerProvider.notifier).signOut();
-          },
         ),
       ],
     );

@@ -49,88 +49,89 @@ class LandingScreen extends HookWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            Center(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 720),
-                child: PageView.builder(
+        body: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 640),
+            child: Stack(
+              children: [
+                PageView.builder(
                   controller: controller,
                   itemCount: onboardingSlides.length,
                   onPageChanged: (index) =>
                       isLastPage.value = index == onboardingSlides.length - 1,
                   itemBuilder: (_, index) => onboardingSlides[index],
                 ),
-              ),
-            ),
-            Positioned(
-              right: 16,
-              top: 48,
-              child: TextButton(
-                onPressed: () async {
-                  await OnboardingService().setCompleted();
-                  if (!context.mounted) return;
-                  context.go('/signin');
-                },
-                child: const Text(
-                  "Skip",
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFFD8E2E4),
-                      decoration: TextDecoration.underline,
-                      decorationColor: Color(0xFFD8E2E4)),
+                Positioned(
+                  right: 16,
+                  top: 48,
+                  child: TextButton(
+                    onPressed: () async {
+                      await OnboardingService().setCompleted();
+                      if (!context.mounted) return;
+                      context.go('/signin');
+                    },
+                    child: const Text(
+                      "Skip",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFFD8E2E4),
+                          decoration: TextDecoration.underline,
+                          decorationColor: Color(0xFFD8E2E4)),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Positioned(
-              bottom: 30,
-              left: 0,
-              right: 0,
-              child: Column(
-                children: [
-                  SmoothPageIndicator(
-                    controller: controller,
-                    count: onboardingSlides.length,
-                    effect: WormEffect(
-                      dotHeight: 12,
-                      dotWidth: 12,
-                      activeDotColor: Color(0xFFD8E2E4),
-                      dotColor: Colors.teal,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
+                Positioned(
+                  bottom: 30,
+                  left: 0,
+                  right: 0,
+                  child: Column(
+                    children: [
+                      SmoothPageIndicator(
+                        controller: controller,
+                        count: onboardingSlides.length,
+                        effect: WormEffect(
+                          dotHeight: 12,
+                          dotWidth: 12,
+                          activeDotColor: Color(0xFFD8E2E4),
+                          dotColor: Colors.teal,
                         ),
-                        minimumSize: const Size(double.infinity, 56),
-                        textStyle: TextStyle(fontSize: 16),
                       ),
-                      onPressed: () async {
-                        if (isLastPage.value) {
-                          await OnboardingService().setCompleted();
-                          // await UserRemoteDatasource()
-                          // .markOnboardingComplete(); // Firestore
-                          if (!context.mounted) return; // ✅ safe check
-                          context.go('/signin');
-                        } else {
-                          controller.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut);
-                        }
-                      },
-                      child: Text(isLastPage.value ? "Get Started" : "Next"),
-                    ),
+                      const SizedBox(height: 24),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(32),
+                            ),
+                            minimumSize: const Size(double.infinity, 56),
+                            textStyle: TextStyle(fontSize: 16),
+                          ),
+                          onPressed: () async {
+                            if (isLastPage.value) {
+                              await OnboardingService().setCompleted();
+                              // await UserRemoteDatasource()
+                              // .markOnboardingComplete(); // Firestore
+                              if (!context.mounted) return; // ✅ safe check
+                              context.go('/signin');
+                            } else {
+                              controller.nextPage(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut);
+                            }
+                          },
+                          child:
+                              Text(isLastPage.value ? "Get Started" : "Next"),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quizdioms/presentation/onboarding/onboarding_screen.dart';
@@ -8,22 +9,26 @@ import 'package:go_router/go_router.dart';
 final onboardingSlides = [
   OnboardingSlide(
     title: "Welcome to Quizdioms",
-    subtitle: "Learn smarter, one question at a time.",
+    subtitle:
+        "Discover a smarter way to boost your English with engaging quizzes, visual learning, and progress tracking—all designed to make learning enjoyable and effective.",
     image: "assets/illustrations/quizzes.png",
   ),
   OnboardingSlide(
     title: "Idioms",
-    subtitle: "Memorize idioms via interactive flip cards.",
+    subtitle:
+        "Explore powerful idiomatic expressions through beautifully animated flip cards. Understand their meanings and real-life usage with clarity and confidence.",
     image: "assets/illustrations/idioms.png",
   ),
   OnboardingSlide(
     title: "Phrases",
-    subtitle: "Learn words, practice phrases for better communication.",
+    subtitle:
+        "Master everyday English phrases to improve your fluency. Practice how native speakers communicate in real conversations with relatable examples.",
     image: "assets/illustrations/phrases.png",
   ),
   OnboardingSlide(
     title: "Ready to Begin?",
-    subtitle: "Join the journey — let’s level up daily!",
+    subtitle:
+        "Take the first step on your language learning journey. Whether it's 5 minutes or 50, Quizdioms is here to help you grow one day at a time.",
     image: "assets/illustrations/go.png",
   ),
 ];
@@ -62,7 +67,7 @@ class LandingScreen extends HookWidget {
                   itemBuilder: (_, index) => onboardingSlides[index],
                 ),
                 Positioned(
-                  right: 16,
+                  right: kIsWeb ? 22 : 16,
                   top: 48,
                   child: TextButton(
                     onPressed: () async {

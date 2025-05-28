@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -110,7 +111,7 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
       appBar: UserAppBar(title: widget.quiz.title),
       body: ResponsiveWrapper(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: kIsWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
           child: Stack(
             children: [
               // 🎉 Confetti
@@ -176,7 +177,9 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                         }
 
                         return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: kIsWeb
+                              ? EdgeInsets.zero
+                              : const EdgeInsets.symmetric(horizontal: 8.0),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 300),
                             margin: const EdgeInsets.symmetric(vertical: 6),
@@ -203,7 +206,9 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                       const SizedBox(height: 24),
                       if (isCorrect == null)
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: kIsWeb
+                              ? EdgeInsets.zero
+                              : const EdgeInsets.symmetric(horizontal: 8.0),
                           child: ElevatedButton(
                             onPressed:
                                 selectedOption == null ? null : _submitAnswer,

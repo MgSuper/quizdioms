@@ -17,7 +17,7 @@ class OnboardingSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     final isWeb = kIsWeb;
     final maxWidth = 640.0;
-    final imageHeight = isWeb ? 300.0 : 200.0;
+    final imageHeight = isWeb ? 200.0 : 150.0;
 
     return Center(
       child: ConstrainedBox(

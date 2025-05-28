@@ -43,100 +43,103 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  textAlign: TextAlign.left,
-                  widget.title,
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: Color(0xFFD8E2E4),
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                const SizedBox(height: 32),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      _buildTextField(
-                        label: 'Email',
-                        onChanged: (v) => _email = v,
-                        validator: (v) => v != null && v.contains('@')
-                            ? null
-                            : 'Invalid email',
-                      ),
-                      const SizedBox(height: 16),
-                      _buildTextField(
-                        label: 'Password',
-                        obscure: true,
-                        onChanged: (v) => _password = v,
-                        validator: (v) =>
-                            v != null && v.length >= 6 ? null : 'Min 6 chars',
-                      ),
-                      const SizedBox(height: 32),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            foregroundColor: Color(0xFFD8E2E4),
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          onPressed: widget.isLoading
-                              ? null
-                              : () {
-                                  if (_formKey.currentState?.validate() ??
-                                      false) {
-                                    widget.onSubmit(
-                                        _email.trim(), _password.trim());
-                                  }
-                                },
-                          child: widget.isLoading
-                              ? const CircularProgressIndicator()
-                              : Text(
-                                  widget.buttonLabel,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFFD8E2E4),
-                                  ),
-                                ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 640),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    textAlign: TextAlign.left,
+                    widget.title,
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: Color(0xFFD8E2E4),
+                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            widget.bottomText,
-                            style: const TextStyle(
-                              color: Color(0xFFD8E2E4),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: widget.onToggle,
-                            child: Text(
-                              widget.buttonLabel.contains("Sign Up")
-                                  ? "Sign In"
-                                  : "Sign Up",
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
                   ),
-                ),
-              ],
+                  const SizedBox(height: 32),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        _buildTextField(
+                          label: 'Email',
+                          onChanged: (v) => _email = v,
+                          validator: (v) => v != null && v.contains('@')
+                              ? null
+                              : 'Invalid email',
+                        ),
+                        const SizedBox(height: 16),
+                        _buildTextField(
+                          label: 'Password',
+                          obscure: true,
+                          onChanged: (v) => _password = v,
+                          validator: (v) =>
+                              v != null && v.length >= 6 ? null : 'Min 6 chars',
+                        ),
+                        const SizedBox(height: 32),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: Color(0xFFD8E2E4),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            onPressed: widget.isLoading
+                                ? null
+                                : () {
+                                    if (_formKey.currentState?.validate() ??
+                                        false) {
+                                      widget.onSubmit(
+                                          _email.trim(), _password.trim());
+                                    }
+                                  },
+                            child: widget.isLoading
+                                ? const CircularProgressIndicator()
+                                : Text(
+                                    widget.buttonLabel,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFD8E2E4),
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              widget.bottomText,
+                              style: const TextStyle(
+                                color: Color(0xFFD8E2E4),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: widget.onToggle,
+                              child: Text(
+                                widget.buttonLabel.contains("Sign Up")
+                                    ? "Sign In"
+                                    : "Sign Up",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

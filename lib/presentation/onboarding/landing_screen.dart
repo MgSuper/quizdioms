@@ -51,12 +51,17 @@ class LandingScreen extends HookWidget {
         backgroundColor: Colors.transparent,
         body: Stack(
           children: [
-            PageView.builder(
-              controller: controller,
-              itemCount: onboardingSlides.length,
-              onPageChanged: (index) =>
-                  isLastPage.value = index == onboardingSlides.length - 1,
-              itemBuilder: (_, index) => onboardingSlides[index],
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 720),
+                child: PageView.builder(
+                  controller: controller,
+                  itemCount: onboardingSlides.length,
+                  onPageChanged: (index) =>
+                      isLastPage.value = index == onboardingSlides.length - 1,
+                  itemBuilder: (_, index) => onboardingSlides[index],
+                ),
+              ),
             ),
             Positioned(
               right: 16,

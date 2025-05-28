@@ -48,6 +48,11 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
     final idioms = widget.group.idioms;
     final learnedAsync = ref.watch(isGroupLearnedProvider(groupId));
 
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+    final padding = isWeb
+        ? const EdgeInsets.symmetric(horizontal: 28)
+        : const EdgeInsets.symmetric(horizontal: 16);
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -62,30 +67,37 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text(widget.group.groupName),
+          title: Padding(
+            padding: padding,
+            child: Text(widget.group.groupName),
+          ),
           backgroundColor: Colors.transparent,
           actions: [
-            learnedAsync.when(
-              data: (isLearned) {
-                return IconButton(
-                  onPressed:
-                      isLearned || _isSubmitting ? null : _handleMarkAsLearned,
-                  icon: Icon(
-                    isLearned ? Icons.check_circle : Icons.add_circle_outline,
-                    color: isLearned ? Colors.green : Colors.white,
+            Padding(
+              padding: padding,
+              child: learnedAsync.when(
+                data: (isLearned) {
+                  return IconButton(
+                    onPressed: isLearned || _isSubmitting
+                        ? null
+                        : _handleMarkAsLearned,
+                    icon: Icon(
+                      isLearned ? Icons.check_circle : Icons.add_circle_outline,
+                      color: isLearned ? Colors.green : Colors.white,
+                    ),
+                    tooltip: isLearned ? 'Already learned' : 'Mark as learned',
+                  );
+                },
+                loading: () => const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2),
                   ),
-                  tooltip: isLearned ? 'Already learned' : 'Mark as learned',
-                );
-              },
-              loading: () => const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2),
                 ),
+                error: (e, _) => const Icon(Icons.error, color: Colors.red),
               ),
-              error: (e, _) => const Icon(Icons.error, color: Colors.red),
             ),
           ],
         ),

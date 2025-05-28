@@ -41,7 +41,7 @@ class RAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isWeb = MediaQuery.of(context).size.width >= 640;
     final padding = isWeb
-        ? const EdgeInsets.symmetric(horizontal: 32)
+        ? const EdgeInsets.symmetric(horizontal: 28)
         : const EdgeInsets.symmetric(horizontal: 16);
     return AppBar(
       backgroundColor: Colors.transparent,

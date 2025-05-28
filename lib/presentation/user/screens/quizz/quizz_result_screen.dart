@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
+import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 import 'package:quizdioms/presentation/user/screens/providers/completed_quizz_ids_provider.dart';
 import 'package:quizdioms/presentation/user/screens/providers/user_quiz_score_provider.dart';
+import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
 
 class QuizResultScreen extends ConsumerWidget {
   final Quiz quiz;
@@ -22,62 +24,61 @@ class QuizResultScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text('Quiz Result'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Quiz Name:',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Color(0xFFD8E2E4)),
-            ),
-            Text(
-              quiz.title,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(color: Color(0xFFD8E2E4)),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Score:',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Color(0xFFD8E2E4)),
-            ),
-            Text(
-              '$score%',
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .copyWith(color: Color(0xFFD8E2E4)),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                backgroundColor: Color(0xFFD8E2E4),
-                foregroundColor: Color(0xFF316E79),
+      appBar: const UserAppBar(title: 'Quiz Result'),
+      body: ResponsiveWrapper(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Quiz Name:',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(color: Color(0xFFD8E2E4)),
               ),
-              onPressed: () {
-                ref.invalidate(userQuizScoreProvider); // 👈 Refresh score map
-                ref.invalidate(
-                    completedQuizIdsProvider); // 👈 Optional, if needed
-                context.go('/user/quizzes');
-              },
-              child: const Text('Back to Quizzes'),
-            ),
-          ],
+              Text(
+                quiz.title,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: Color(0xFFD8E2E4)),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Score:',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(color: Color(0xFFD8E2E4)),
+              ),
+              Text(
+                '$score%',
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .copyWith(color: Color(0xFFD8E2E4)),
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  backgroundColor: Color(0xFFD8E2E4),
+                  foregroundColor: Color(0xFF316E79),
+                ),
+                onPressed: () {
+                  ref.invalidate(userQuizScoreProvider); // 👈 Refresh score map
+                  ref.invalidate(
+                      completedQuizIdsProvider); // 👈 Optional, if needed
+                  context.go('/user/quizzes');
+                },
+                child: const Text('Back to Quizzes'),
+              ),
+            ],
+          ),
         ),
       ),
     );

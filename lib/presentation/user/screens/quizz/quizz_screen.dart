@@ -72,12 +72,10 @@ class QuizzScreen extends ConsumerWidget {
                                           ),
                                         ),
                                         progressColor: isCompleted
-                                            ? const Color.fromARGB(
-                                                255, 104, 154, 105)
-                                            : Color.fromARGB(
-                                                255, 209, 198, 198),
-                                        backgroundColor: const Color.fromARGB(
-                                            255, 209, 198, 198),
+                                            ? Color(0xFF316E79)
+                                            : const Color(0xFF88A6AA),
+                                        backgroundColor:
+                                            const Color(0xFF88A6AA),
                                       ),
                                       const SizedBox(width: 16),
                                       Expanded(

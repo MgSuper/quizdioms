@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:quizdioms/presentation/onboarding/onboarding_screen.dart';
@@ -41,6 +40,8 @@ class LandingScreen extends HookWidget {
     final controller = usePageController();
     final isLastPage = useState(false);
 
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -67,7 +68,7 @@ class LandingScreen extends HookWidget {
                   itemBuilder: (_, index) => onboardingSlides[index],
                 ),
                 Positioned(
-                  right: kIsWeb ? 22 : 16,
+                  right: isWeb ? 22 : 16,
                   top: 48,
                   child: TextButton(
                     onPressed: () async {

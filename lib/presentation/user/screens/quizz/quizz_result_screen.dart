@@ -23,7 +23,7 @@ class QuizResultScreen extends ConsumerWidget {
     final score = ((correctAnswers / totalQuestions) * 100).round();
 
     final double horizontalPadding =
-        MediaQuery.of(context).size.width >= 640 ? 48 : 16;
+        MediaQuery.of(context).size.width >= 640 ? 48 : 22;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -43,12 +43,11 @@ class QuizResultScreen extends ConsumerWidget {
                     .headlineMedium!
                     .copyWith(color: Color(0xFFD8E2E4)),
               ),
+              const SizedBox(height: 4),
               Text(
                 quiz.title,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(color: Color(0xFFD8E2E4)),
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    color: Color(0xFFD8E2E4), fontStyle: FontStyle.italic),
               ),
               const SizedBox(height: 16),
               Text(
@@ -58,12 +57,11 @@ class QuizResultScreen extends ConsumerWidget {
                     .headlineMedium!
                     .copyWith(color: Color(0xFFD8E2E4)),
               ),
+              const SizedBox(height: 4),
               Text(
                 '$score%',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(color: Color(0xFFD8E2E4)),
+                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                    color: Color(0xFFD8E2E4), fontStyle: FontStyle.italic),
               ),
               const SizedBox(height: 24),
               ElevatedButton(

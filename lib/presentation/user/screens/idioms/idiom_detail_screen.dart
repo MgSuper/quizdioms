@@ -127,7 +127,7 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
 
               return Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 56.0, horizontal: 0),
+                    const EdgeInsets.symmetric(vertical: 100, horizontal: 0),
                 child: Transform.scale(
                   scale: scale,
                   child: FlipCard(
@@ -182,30 +182,38 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
           border: Border.all(color: Colors.white.withAlpha(20)),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1C313A),
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF1C313A),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                const Text(
+                  'Tab card to flip',
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    decoration: TextDecoration.underline,
+                    decorationStyle: TextDecorationStyle.dashed,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF1C313A),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
+            const Spacer(),
             Text(
               '"$content"',
               style: const TextStyle(
-                fontSize: 18,
-                color: Color(0xFFD8E2E4),
-              ),
-              textAlign: TextAlign.end,
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Tap to flip',
-              style: TextStyle(
                 fontSize: 18,
                 color: Color(0xFFD8E2E4),
               ),
@@ -248,44 +256,54 @@ Widget _buildBackGlassCard({
         border: Border.all(color: Colors.white.withAlpha(20)),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Meaning',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF1C313A),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFFD8E2E4),
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Meaning :',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1C313A),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFD8E2E4),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Usage',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF1C313A),
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            '"$content"',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFFD8E2E4),
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Usage :',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1C313A),
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '"$content"',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFD8E2E4),
+                ),
+              ),
+            ],
           ),
         ],
       ),

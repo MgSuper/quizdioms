@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class OnboardingSlide extends StatelessWidget {
   final String title;
@@ -15,7 +14,7 @@ class OnboardingSlide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isWeb = kIsWeb;
+    final isWeb = MediaQuery.of(context).size.width >= 640;
     final maxWidth = 640.0;
     final imageHeight = isWeb ? 200.0 : 150.0;
 

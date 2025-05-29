@@ -90,11 +90,9 @@ class IdiomScreen extends ConsumerWidget {
                                           isGroupLearnedProvider(group.id));
                                       return learnedAsync.when(
                                         data: (isLearned) => Icon(
-                                          isLearned
-                                              ? Icons.check_circle
-                                              : Icons.add_circle_outline,
+                                          Icons.check_circle,
                                           color: isLearned
-                                              ? Colors.green
+                                              ? Color(0xFF316E79)
                                               : Colors.grey,
                                         ),
                                         loading: () => const SizedBox(

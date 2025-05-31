@@ -15,21 +15,23 @@ abstract class QuizModel with _$QuizModel {
     required String id,
     required String title,
     required List<QuestionModel> questions,
+    required DateTime createdAt,
   }) = _QuizModel;
 
   factory QuizModel.fromJson(Map<String, dynamic> json) =>
       _$QuizModelFromJson(json);
 
   Quiz toEntity() => Quiz(
-        id: id,
-        title: title,
-        questions: questions.map((q) => q.toEntity()).toList(),
-      );
+      id: id,
+      title: title,
+      questions: questions.map((q) => q.toEntity()).toList(),
+      createdAt: createdAt);
 
   factory QuizModel.fromEntity(Quiz entity) => QuizModel(
         id: entity.id,
         title: entity.title,
         questions:
             entity.questions.map((q) => QuestionModel.fromEntity(q)).toList(),
+        createdAt: DateTime.now(),
       );
 }

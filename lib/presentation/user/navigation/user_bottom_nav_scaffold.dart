@@ -10,14 +10,12 @@ class UserBottomNavScaffold extends StatelessWidget {
     final location = GoRouterState.of(context).uri.toString();
 
     int currentIndex = 0;
-    if (location.contains('/user/idioms')) {
+    if (location.contains('/user/learning')) {
       currentIndex = 1;
-    } else if (location.contains('/user/phrases')) {
-      currentIndex = 2;
     } else if (location.contains('/user/performance')) {
-      currentIndex = 3;
+      currentIndex = 2;
     } else if (location.contains('/user/profile')) {
-      currentIndex = 4;
+      currentIndex = 3;
     }
 
     return Container(
@@ -58,9 +56,9 @@ class UserBottomNavScaffold extends StatelessWidget {
                       NavigationRailDestination(
                           icon: Icon(Icons.quiz), label: Text('Quizz')),
                       NavigationRailDestination(
-                          icon: Icon(Icons.book), label: Text('Idioms')),
-                      NavigationRailDestination(
-                          icon: Icon(Icons.chat), label: Text('Phrases')),
+                          icon: Icon(Icons.book), label: Text('Learning')),
+                      // NavigationRailDestination(
+                      //     icon: Icon(Icons.chat), label: Text('Phrases')),
                       NavigationRailDestination(
                           icon: Icon(Icons.bar_chart),
                           label: Text('Performance')),
@@ -74,15 +72,15 @@ class UserBottomNavScaffold extends StatelessWidget {
                           context.go('/user/quizzes');
                           break;
                         case 1:
-                          context.go('/user/idioms');
+                          context.go('/user/learning');
                           break;
+                        // case 2:
+                        //   context.go('/user/phrases');
+                        //   break;
                         case 2:
-                          context.go('/user/phrases');
-                          break;
-                        case 3:
                           context.go('/user/performance');
                           break;
-                        case 4:
+                        case 3:
                           context.go('/user/profile');
                           break;
                       }
@@ -107,11 +105,11 @@ class UserBottomNavScaffold extends StatelessWidget {
                       context.go('/user/quizzes');
                       break;
                     case 1:
-                      context.go('/user/idioms');
+                      context.go('/user/learning');
                       break;
-                    case 2:
-                      context.go('/user/phrases');
-                      break;
+                    // case 2:
+                    //   context.go('/user/phrases');
+                    //   break;
                     case 3:
                       context.go('/user/performance');
                       break;
@@ -124,9 +122,9 @@ class UserBottomNavScaffold extends StatelessWidget {
                   BottomNavigationBarItem(
                       icon: Icon(Icons.quiz), label: 'Quizz'),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.book), label: 'Idioms'),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.chat), label: 'Phrases'),
+                      icon: Icon(Icons.book), label: 'Learning'),
+                  // BottomNavigationBarItem(
+                  //     icon: Icon(Icons.chat), label: 'Phrases'),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.bar_chart), label: 'Performance'),
                   BottomNavigationBarItem(

@@ -12,10 +12,13 @@ _Quiz _$QuizFromJson(Map<String, dynamic> json) => _Quiz(
       questions: (json['questions'] as List<dynamic>)
           .map((e) => Question.fromJson(e as Map<String, dynamic>))
           .toList(),
+      createdAt: const DateTimeTimestampConverter().fromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$QuizToJson(_Quiz instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'questions': instance.questions,
+      'createdAt':
+          const DateTimeTimestampConverter().toJson(instance.createdAt),
     };

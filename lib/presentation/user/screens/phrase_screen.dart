@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
-import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
 
 class PhraseScreen extends StatelessWidget {
   const PhraseScreen({super.key});
@@ -9,7 +8,6 @@ class PhraseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: const UserAppBar(title: 'Phrases'),
       body: ResponsiveWrapper(
         child: const Center(
           child: Text('Coming soon'),

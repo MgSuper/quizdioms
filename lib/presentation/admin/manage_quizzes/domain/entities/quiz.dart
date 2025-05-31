@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:quizdioms/core/utils/shared.dart';
 import 'question.dart';
 
 part 'quiz.freezed.dart';
@@ -10,6 +11,7 @@ abstract class Quiz with _$Quiz {
     required String id,
     required String title,
     required List<Question> questions,
+    @DateTimeTimestampConverter() required DateTime createdAt,
   }) = _Quiz;
 
   factory Quiz.fromJson(Map<String, dynamic> json) => _$QuizFromJson(json);

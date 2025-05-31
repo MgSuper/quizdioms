@@ -20,6 +20,7 @@ class QuizRemoteDataSource {
     final data = {
       'title': quiz.title,
       'questions': quiz.questions.map((q) => q.toJson()).toList(),
+      'createdAt': FieldValue.serverTimestamp(),
     };
 
     await firestore.collection('quizzes').add(data);

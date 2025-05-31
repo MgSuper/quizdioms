@@ -18,6 +18,7 @@ mixin _$QuizModel {
   String get id;
   String get title;
   List<QuestionModel> get questions;
+  DateTime get createdAt;
 
   /// Create a copy of QuizModel
   /// with the given fields replaced by the non-null parameter values.
@@ -36,17 +37,19 @@ mixin _$QuizModel {
             other is QuizModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            const DeepCollectionEquality().equals(other.questions, questions));
+            const DeepCollectionEquality().equals(other.questions, questions) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, const DeepCollectionEquality().hash(questions));
+  int get hashCode => Object.hash(runtimeType, id, title,
+      const DeepCollectionEquality().hash(questions), createdAt);
 
   @override
   String toString() {
-    return 'QuizModel(id: $id, title: $title, questions: $questions)';
+    return 'QuizModel(id: $id, title: $title, questions: $questions, createdAt: $createdAt)';
   }
 }
 
@@ -55,7 +58,11 @@ abstract mixin class $QuizModelCopyWith<$Res> {
   factory $QuizModelCopyWith(QuizModel value, $Res Function(QuizModel) _then) =
       _$QuizModelCopyWithImpl;
   @useResult
-  $Res call({String id, String title, List<QuestionModel> questions});
+  $Res call(
+      {String id,
+      String title,
+      List<QuestionModel> questions,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -73,6 +80,7 @@ class _$QuizModelCopyWithImpl<$Res> implements $QuizModelCopyWith<$Res> {
     Object? id = null,
     Object? title = null,
     Object? questions = null,
+    Object? createdAt = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -87,6 +95,10 @@ class _$QuizModelCopyWithImpl<$Res> implements $QuizModelCopyWith<$Res> {
           ? _self.questions
           : questions // ignore: cast_nullable_to_non_nullable
               as List<QuestionModel>,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -97,7 +109,8 @@ class _QuizModel extends QuizModel {
   const _QuizModel(
       {required this.id,
       required this.title,
-      required final List<QuestionModel> questions})
+      required final List<QuestionModel> questions,
+      required this.createdAt})
       : _questions = questions,
         super._();
   factory _QuizModel.fromJson(Map<String, dynamic> json) =>
@@ -114,6 +127,9 @@ class _QuizModel extends QuizModel {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_questions);
   }
+
+  @override
+  final DateTime createdAt;
 
   /// Create a copy of QuizModel
   /// with the given fields replaced by the non-null parameter values.
@@ -138,17 +154,19 @@ class _QuizModel extends QuizModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality()
-                .equals(other._questions, _questions));
+                .equals(other._questions, _questions) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, const DeepCollectionEquality().hash(_questions));
+  int get hashCode => Object.hash(runtimeType, id, title,
+      const DeepCollectionEquality().hash(_questions), createdAt);
 
   @override
   String toString() {
-    return 'QuizModel(id: $id, title: $title, questions: $questions)';
+    return 'QuizModel(id: $id, title: $title, questions: $questions, createdAt: $createdAt)';
   }
 }
 
@@ -160,7 +178,11 @@ abstract mixin class _$QuizModelCopyWith<$Res>
       __$QuizModelCopyWithImpl;
   @override
   @useResult
-  $Res call({String id, String title, List<QuestionModel> questions});
+  $Res call(
+      {String id,
+      String title,
+      List<QuestionModel> questions,
+      DateTime createdAt});
 }
 
 /// @nodoc
@@ -178,6 +200,7 @@ class __$QuizModelCopyWithImpl<$Res> implements _$QuizModelCopyWith<$Res> {
     Object? id = null,
     Object? title = null,
     Object? questions = null,
+    Object? createdAt = null,
   }) {
     return _then(_QuizModel(
       id: null == id
@@ -192,6 +215,10 @@ class __$QuizModelCopyWithImpl<$Res> implements _$QuizModelCopyWith<$Res> {
           ? _self._questions
           : questions // ignore: cast_nullable_to_non_nullable
               as List<QuestionModel>,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }

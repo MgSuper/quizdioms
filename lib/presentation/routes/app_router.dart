@@ -20,13 +20,12 @@ import 'package:quizdioms/presentation/user/auth/sign_in_screen.dart';
 import 'package:quizdioms/presentation/user/auth/sign_up_screen.dart';
 import 'package:quizdioms/presentation/user/navigation/user_bottom_nav_scaffold.dart';
 import 'package:quizdioms/presentation/user/screens/idioms/idiom_detail_screen.dart';
-import 'package:quizdioms/presentation/user/screens/idioms/idiom_screen.dart';
 import 'package:quizdioms/presentation/user/screens/performance_screen.dart';
-import 'package:quizdioms/presentation/user/screens/phrase_screen.dart';
 import 'package:quizdioms/presentation/user/screens/profile_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quiz_attempt_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quizz_result_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quizz_screen.dart';
+import 'package:quizdioms/presentation/user/screens/learning/learning_screen.dart';
 import 'package:quizdioms/services/onboarding_service.dart';
 
 class GoRouterAuthNotifier extends ChangeNotifier {
@@ -71,19 +70,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             builder: (_, __) => const QuizzScreen(),
           ),
           GoRoute(
-            path: '/user/idioms',
-            builder: (_, __) => const IdiomScreen(),
+            path: '/user/learning',
+            builder: (_, __) => const LearningScreen(),
           ),
           GoRoute(
             path: '/user/idioms/detail',
             builder: (context, state) {
               final group = state.extra! as IdiomGroup;
-              return IdiomDetailScreen(group: group); // you’ll build this next
+              return IdiomDetailScreen(group: group);
             },
-          ),
-          GoRoute(
-            path: '/user/phrases',
-            builder: (_, __) => const PhraseScreen(),
           ),
           GoRoute(
             path: '/user/performance',
@@ -141,7 +136,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: 'add-idiom',
-                builder: (_, __) => const AddIdiomsScreen(), // 👈 new screen
+                builder: (_, __) => const AddIdiomsScreen(),
               ),
               GoRoute(
                 path: 'edit-idiom',

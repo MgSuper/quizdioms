@@ -36,6 +36,7 @@ class _AddQuizScreenState extends ConsumerState<AddQuizScreen> {
         id: const Uuid().v4(),
         title: _titleController.text.trim(),
         questions: _questions,
+        createdAt: DateTime.now(),
       );
       ref.read(quizControllerProvider.notifier).addQuiz(quiz.toEntity());
       Navigator.pop(context);

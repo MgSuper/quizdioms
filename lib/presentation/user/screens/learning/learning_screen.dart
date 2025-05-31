@@ -15,6 +15,10 @@ class _LearningScreenState extends State<LearningScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+    final padding = isWeb
+        ? const EdgeInsets.symmetric(horizontal: 36)
+        : const EdgeInsets.symmetric(horizontal: 20);
     return Scaffold(
       appBar: const UserAppBar(title: 'Learning'),
       backgroundColor: Colors.transparent,
@@ -25,7 +29,7 @@ class _LearningScreenState extends State<LearningScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: padding,
                 child: ToggleButtons(
                   isSelected: [showIdioms, !showIdioms],
                   onPressed: (index) {

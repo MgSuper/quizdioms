@@ -121,7 +121,6 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
             controller: _pageController,
             itemBuilder: (context, index) {
               final idiom = idioms[index];
-              print('idiom: $idiom');
               final scale =
                   (1 - (_currentPage - index).abs() * 0.1).clamp(0.9, 1.0);
 

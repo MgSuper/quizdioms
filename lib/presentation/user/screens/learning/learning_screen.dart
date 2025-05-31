@@ -18,39 +18,41 @@ class _LearningScreenState extends State<LearningScreen> {
     return Scaffold(
       appBar: const UserAppBar(title: 'Learning'),
       backgroundColor: Colors.transparent,
-      body: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 640),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: ToggleButtons(
-                isSelected: [showIdioms, !showIdioms],
-                onPressed: (index) {
-                  setState(() {
-                    showIdioms = index == 0;
-                  });
-                },
-                borderRadius: BorderRadius.circular(12),
-                selectedColor: Colors.white,
-                fillColor: const Color(0xFF316E79),
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text('Idioms'),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text('Phrases'),
-                  ),
-                ],
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 640),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: ToggleButtons(
+                  isSelected: [showIdioms, !showIdioms],
+                  onPressed: (index) {
+                    setState(() {
+                      showIdioms = index == 0;
+                    });
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  selectedColor: Colors.white,
+                  fillColor: const Color(0xFF316E79),
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text('Idioms'),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text('Phrases'),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: showIdioms ? const IdiomScreen() : const PhraseScreen(),
-            ),
-          ],
+              Expanded(
+                child: showIdioms ? const IdiomScreen() : const PhraseScreen(),
+              ),
+            ],
+          ),
         ),
       ),
     );

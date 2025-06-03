@@ -96,8 +96,8 @@ class UserBottomNavScaffold extends StatelessWidget {
                 selectedLabelStyle: TextStyle(
                   color: Color(0xFFD8E2E4),
                 ),
-                unselectedItemColor: Color(0xFF316E79),
-                selectedItemColor: Color(0xFFD8E2E4),
+                unselectedItemColor: Color(0xFFD8E2E4),
+                selectedItemColor: Color(0xFF316E79),
                 currentIndex: currentIndex,
                 onTap: (index) {
                   switch (index) {
@@ -110,10 +110,10 @@ class UserBottomNavScaffold extends StatelessWidget {
                     // case 2:
                     //   context.go('/user/phrases');
                     //   break;
-                    case 3:
+                    case 2:
                       context.go('/user/performance');
                       break;
-                    case 4:
+                    case 3:
                       context.go('/user/profile');
                       break;
                   }

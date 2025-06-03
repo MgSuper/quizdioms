@@ -22,8 +22,8 @@ class QuizzScreen extends ConsumerStatefulWidget {
 class _QuizzScreenState extends ConsumerState<QuizzScreen> {
   final _scrollController = ScrollController();
   late ConfettiController _confettiController;
-  int? _unlockAnimationIndex;
-  Map<String, double> _previousScores = {};
+  // int? _unlockAnimationIndex;
+  // Map<String, double> _previousScores = {};
 
   @override
   void initState() {
@@ -31,9 +31,9 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 2));
 
-    ref.read(userQuizScoreProvider).whenData((scoreMap) {
-      _previousScores = Map.from(scoreMap);
-    });
+    // ref.read(userQuizScoreProvider).whenData((scoreMap) {
+    //   _previousScores = Map.from(scoreMap);
+    // });
 
     _scrollController.addListener(() {
       final controller = ref.read(paginatedQuizProvider.notifier);
@@ -65,28 +65,28 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
         child: scoreMapAsync.when(
           data: (scoreMap) {
             // Detect newly unlocked quiz
-            for (int i = 0; i < quizzes.length - 1; i++) {
-              final currentQuizId = quizzes[i].id;
-              final nextQuizId = quizzes[i + 1].id;
-              final oldScore = _previousScores[currentQuizId] ?? 0.0;
-              final newScore = scoreMap[currentQuizId] ?? 0.0;
+            // for (int i = 0; i < quizzes.length - 1; i++) {
+            // final currentQuizId = quizzes[i].id;
+            // final nextQuizId = quizzes[i + 1].id;
+            // final oldScore = _previousScores[currentQuizId] ?? 0.0;
+            // final newScore = scoreMap[currentQuizId] ?? 0.0;
 
-              if (oldScore < 0.8 &&
-                  newScore >= 0.8 &&
-                  !_previousScores.containsKey(nextQuizId)) {
-                _unlockAnimationIndex = i + 1;
-                _confettiController.play();
+            // if (oldScore < 0.8 &&
+            //     newScore >= 0.8 &&
+            //     !_previousScores.containsKey(nextQuizId)) {
+            //   _unlockAnimationIndex = i + 1;
+            //   _confettiController.play();
 
-                Future.delayed(const Duration(seconds: 2), () {
-                  if (mounted) {
-                    setState(() => _unlockAnimationIndex = null);
-                  }
-                });
-                break;
-              }
-            }
+            //   Future.delayed(const Duration(seconds: 2), () {
+            //     if (mounted) {
+            //       setState(() => _unlockAnimationIndex = null);
+            //     }
+            //   });
+            //   break;
+            // }
+            // }
 
-            _previousScores = Map.from(scoreMap);
+            // _previousScores = Map.from(scoreMap);
 
             return ListView.builder(
               controller: _scrollController,
@@ -120,45 +120,45 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
                 return Stack(children: [
                   _buildQuizCard(
                       context, quiz, index, percent, isCompleted, isLocked),
-                  if (_unlockAnimationIndex == index)
-                    Positioned(
-                      right: 10,
-                      bottom: 15,
-                      child: Column(
-                        children: [
-                          ConfettiWidget(
-                            confettiController: _confettiController,
-                            blastDirectionality: BlastDirectionality.explosive,
-                            shouldLoop: false,
-                            colors: const [
-                              Colors.green,
-                              Colors.blue,
-                              Colors.purple
-                            ],
-                            numberOfParticles: 25,
-                            maxBlastForce: 20,
-                            minBlastForce: 5,
-                          ),
-                          const SizedBox(height: 8),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: Colors.green.shade700.withAlpha(9),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Text(
-                              '🎉 New Quiz Unlocked!',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+                  // if (_unlockAnimationIndex == index)
+                  // Positioned(
+                  //   right: 10,
+                  //   bottom: 15,
+                  //   child: Column(
+                  //     children: [
+                  //       ConfettiWidget(
+                  //         confettiController: _confettiController,
+                  //         blastDirectionality: BlastDirectionality.explosive,
+                  //         shouldLoop: false,
+                  //         colors: const [
+                  //           Colors.green,
+                  //           Colors.blue,
+                  //           Colors.purple
+                  //         ],
+                  //         numberOfParticles: 25,
+                  //         maxBlastForce: 20,
+                  //         minBlastForce: 5,
+                  //       ),
+                  //       const SizedBox(height: 8),
+                  //       Container(
+                  //         padding: const EdgeInsets.symmetric(
+                  //             horizontal: 12, vertical: 6),
+                  //         decoration: BoxDecoration(
+                  //           color: Colors.green.shade700.withAlpha(9),
+                  //           borderRadius: BorderRadius.circular(8),
+                  //         ),
+                  //         child: const Text(
+                  //           '🎉 New Quiz Unlocked!',
+                  //           style: TextStyle(
+                  //             color: Colors.white,
+                  //             fontWeight: FontWeight.bold,
+                  //             fontSize: 10,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // )
                 ]);
               },
             );

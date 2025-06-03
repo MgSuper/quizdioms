@@ -18,6 +18,7 @@ mixin _$QuizModel {
   String get id;
   String get title;
   List<QuestionModel> get questions;
+  @DateTimeTimestampConverter()
   DateTime get createdAt;
 
   /// Create a copy of QuizModel
@@ -62,7 +63,7 @@ abstract mixin class $QuizModelCopyWith<$Res> {
       {String id,
       String title,
       List<QuestionModel> questions,
-      DateTime createdAt});
+      @DateTimeTimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -110,7 +111,7 @@ class _QuizModel extends QuizModel {
       {required this.id,
       required this.title,
       required final List<QuestionModel> questions,
-      required this.createdAt})
+      @DateTimeTimestampConverter() required this.createdAt})
       : _questions = questions,
         super._();
   factory _QuizModel.fromJson(Map<String, dynamic> json) =>
@@ -129,6 +130,7 @@ class _QuizModel extends QuizModel {
   }
 
   @override
+  @DateTimeTimestampConverter()
   final DateTime createdAt;
 
   /// Create a copy of QuizModel
@@ -182,7 +184,7 @@ abstract mixin class _$QuizModelCopyWith<$Res>
       {String id,
       String title,
       List<QuestionModel> questions,
-      DateTime createdAt});
+      @DateTimeTimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc

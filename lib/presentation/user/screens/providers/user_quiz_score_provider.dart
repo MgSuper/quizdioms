@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+final newlyUnlockedQuizIndexProvider = StateProvider<int?>((ref) => null);
+
 final userQuizScoreProvider = FutureProvider<Map<String, double>>((ref) async {
   final user = FirebaseAuth.instance.currentUser;
   if (user == null) return {};

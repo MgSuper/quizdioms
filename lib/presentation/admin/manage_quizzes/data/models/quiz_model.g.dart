@@ -12,7 +12,7 @@ _QuizModel _$QuizModelFromJson(Map<String, dynamic> json) => _QuizModel(
       questions: (json['questions'] as List<dynamic>)
           .map((e) => QuestionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: const DateTimeTimestampConverter().fromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$QuizModelToJson(_QuizModel instance) =>
@@ -20,5 +20,6 @@ Map<String, dynamic> _$QuizModelToJson(_QuizModel instance) =>
       'id': instance.id,
       'title': instance.title,
       'questions': instance.questions,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt':
+          const DateTimeTimestampConverter().toJson(instance.createdAt),
     };

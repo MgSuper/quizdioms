@@ -1,6 +1,7 @@
 // lib/features/admin/manage_quizzes/data/models/quiz_model.dart
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:quizdioms/core/utils/shared.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/data/models/question_model.dart';
 
@@ -15,7 +16,7 @@ abstract class QuizModel with _$QuizModel {
     required String id,
     required String title,
     required List<QuestionModel> questions,
-    required DateTime createdAt,
+    @DateTimeTimestampConverter() required DateTime createdAt,
   }) = _QuizModel;
 
   factory QuizModel.fromJson(Map<String, dynamic> json) =>

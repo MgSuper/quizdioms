@@ -197,7 +197,7 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
                 ),
                 const SizedBox(height: 4),
                 const Text(
-                  'Tab card to flip',
+                  'Tab to reveal the meaning',
                   style: TextStyle(
                     fontStyle: FontStyle.italic,
                     decoration: TextDecoration.underline,

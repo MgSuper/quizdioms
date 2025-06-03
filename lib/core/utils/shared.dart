@@ -17,5 +17,22 @@ class DateTimeTimestampConverter implements JsonConverter<DateTime, dynamic> {
   }
 
   @override
-  dynamic toJson(DateTime date) => date.toIso8601String();
+  Object toJson(DateTime date) => Timestamp.fromDate(date);
+}
+
+class TimestampConverter implements JsonConverter<DateTime, Object> {
+  const TimestampConverter();
+
+  @override
+  DateTime fromJson(Object json) {
+    if (json is Timestamp) {
+      return json.toDate();
+    } else if (json is String) {
+      return DateTime.parse(json);
+    }
+    throw Exception('Invalid date format');
+  }
+
+  @override
+  Object toJson(DateTime date) => Timestamp.fromDate(date);
 }

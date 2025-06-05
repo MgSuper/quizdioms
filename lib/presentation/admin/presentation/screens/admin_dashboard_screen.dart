@@ -24,7 +24,7 @@ class AdminDashboardScreen extends ConsumerWidget {
       _DashboardItem(
         title: 'Manage Quotes',
         icon: Icons.format_quote,
-        route: '/admin/manage-quotes',
+        route: '/admin/manage-phrases',
       ),
       _DashboardItem(
         title: 'User Performance',

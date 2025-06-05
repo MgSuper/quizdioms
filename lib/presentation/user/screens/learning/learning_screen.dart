@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizdioms/presentation/user/screens/idioms/idiom_screen.dart';
-import 'package:quizdioms/presentation/user/screens/phrase_screen.dart';
+import 'package:quizdioms/presentation/user/screens/phrases/phrase_screen.dart';
 import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
 
 class LearningScreen extends StatefulWidget {

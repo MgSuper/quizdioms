@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_group_model.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/presentations/add_new_phrases_screen.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/presentations/manage_phrases_screen.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/data/models/idioms.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/presentation/screens/add_quiz_screen.dart';
@@ -21,6 +24,7 @@ import 'package:quizdioms/presentation/user/auth/sign_up_screen.dart';
 import 'package:quizdioms/presentation/user/navigation/user_bottom_nav_scaffold.dart';
 import 'package:quizdioms/presentation/user/screens/idioms/idiom_detail_screen.dart';
 import 'package:quizdioms/presentation/user/screens/performance_screen.dart';
+import 'package:quizdioms/presentation/user/screens/phrases/phrase_group_detail_screen.dart';
 import 'package:quizdioms/presentation/user/screens/profile_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quiz_attempt_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quizz_result_screen.dart';
@@ -148,8 +152,21 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ],
           ),
           GoRoute(
-            path: 'manage-quotes',
-            builder: (_, __) => const ManageQuotesScreen(),
+            path: 'manage-phrases',
+            builder: (_, __) => const ManagePhrasesScreen(),
+            routes: [
+              GoRoute(
+                path: 'add-phrase',
+                builder: (_, __) => const AddNewPhrasesScreen(),
+              ),
+              GoRoute(
+                path: '/user/phrases/detail',
+                builder: (context, state) {
+                  final group = state.extra! as PhraseGroupModel;
+                  return PhraseGroupDetailScreen(group: group);
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: 'user-performance',

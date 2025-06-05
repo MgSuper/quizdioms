@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quizdioms/presentation/admin/manage_phrases/controllers/phrase_group_list_controller.dart';
-import '../../../admin/manage_phrases/data/datasources/phrase_remote_data_source.dart';
-import '../../../admin/manage_phrases/data/repositories/phrase_repository_impl.dart';
-import '../../../admin/manage_phrases/domain/usecases/phrase_group_usecases.dart';
-import '../../../admin/manage_phrases/data/models/phrase_group_model.dart';
-import '../../../admin/manage_phrases/domain/repositories/phrase_repository.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/data/datasources/phrase_remote_data_source.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_group_model.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/data/repositories/phrase_repository_impl.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/domain/repositories/phrase_repository.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/domain/usecases/phrase_group_usecases.dart';
 
 /// 🔗 Repository Provider
 final phraseRepositoryProvider = Provider<PhraseRepository>((ref) {

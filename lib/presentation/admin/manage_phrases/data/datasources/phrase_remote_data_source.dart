@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/phrase_group_model.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_group_model.dart';
 
 class PhraseRemoteDataSource {
   final FirebaseFirestore firestore;

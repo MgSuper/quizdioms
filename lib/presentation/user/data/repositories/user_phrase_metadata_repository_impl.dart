@@ -1,6 +1,5 @@
 import 'package:quizdioms/presentation/user/data/user_phrase_metadata_remote_data_source.dart';
-
-import '../../domain/repositories/user_phrase_metadata_repository.dart';
+import 'package:quizdioms/presentation/user/domain/repositories/user_phrase_metadata_repository.dart';
 
 class UserPhraseMetadataRepositoryImpl implements UserPhraseMetadataRepository {
   final UserPhraseMetadataRemoteDataSource remote;

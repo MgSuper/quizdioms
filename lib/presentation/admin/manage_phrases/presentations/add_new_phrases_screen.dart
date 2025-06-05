@@ -4,7 +4,6 @@ import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_g
 import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_model.dart';
 import 'package:quizdioms/presentation/admin/manage_phrases/providers/phrase_group_providers.dart';
 import 'package:quizdioms/presentation/admin/manage_phrases/widgets/phrase_dialog.dart';
-import '../controllers/phrase_group_list_controller.dart';
 
 class AddNewPhrasesScreen extends ConsumerStatefulWidget {
   final PhraseGroupModel? group;

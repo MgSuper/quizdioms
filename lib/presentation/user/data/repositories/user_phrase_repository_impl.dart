@@ -1,7 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_group_model.dart';
 import 'package:quizdioms/presentation/user/data/user_phrase_remote_data_source.dart';
-import '../../domain/repositories/user_phrase_repository.dart';
+import 'package:quizdioms/presentation/user/domain/repositories/user_phrase_repository.dart';
 
 class UserPhraseRepositoryImpl implements UserPhraseRepository {
   final UserPhraseRemoteDataSource remoteDataSource;

@@ -1,8 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_group_model.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/domain/repositories/phrase_repository.dart';
 import 'package:quizdioms/presentation/admin/manage_phrases/providers/phrase_group_providers.dart';
-
-import '../../data/models/phrase_group_model.dart';
-import '../repositories/phrase_repository.dart';
 
 class FetchPhraseGroups {
   final PhraseRepository repository;

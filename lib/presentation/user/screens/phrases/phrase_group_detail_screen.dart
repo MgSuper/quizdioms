@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:quizdioms/presentation/user/screens/phrases/controllers/user_learned_phrase_controller.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_group_model.dart';
 import 'package:quizdioms/presentation/user/screens/phrases/providers/user_phrase_metadata_providers.dart';
-
-import '../../../admin/manage_phrases/data/models/phrase_group_model.dart';
 
 class PhraseGroupDetailScreen extends ConsumerWidget {
   final PhraseGroupModel group;

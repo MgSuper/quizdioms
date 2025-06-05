@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizdioms/presentation/admin/manage_phrases/presentations/add_new_phrases_screen.dart';
 import 'package:quizdioms/presentation/admin/manage_phrases/providers/phrase_group_providers.dart';
-import '../controllers/phrase_group_list_controller.dart';
-import 'add_new_phrases_screen.dart';
 
 class ManagePhrasesScreen extends ConsumerStatefulWidget {
   const ManagePhrasesScreen({super.key});

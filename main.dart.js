@@ -93947,7 +93947,7 @@ $2(a,b){return B.Gi},
 $S:676}
 A.ak4.prototype={
 $2(a,b){var s=null,r=this.a.e.d[b],q=this.b
-return A.ck(A.b([A.aM("Phrase",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM(r.a,s,s,s,s,A.Q(q).p2.Q,s,s),B.lk,A.aM("Explanation",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM(r.b,s,s,s,s,A.Q(q).p2.Q,s,s),B.lk,A.aM("Example Usage 1",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM(r.c,s,s,s,s,A.Q(q).p2.Q,s,s),B.lk,A.aM("Example Usage 2",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM(r.d,s,s,s,s,A.Q(q).p2.Q,s,s)],t.p),B.aP,B.C,B.N,B.E)},
+return A.ck(A.b([A.aM("Phrase",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM('"'+r.a+'"',s,s,s,s,A.Q(q).p2.z,s,s),B.lk,A.aM("Explanation",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM('"'+r.b+'"',s,s,s,s,A.Q(q).p2.z,s,s),B.lk,A.aM("Example Usage 1",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM('"'+r.c+'"',s,s,s,s,A.Q(q).p2.z,s,s),B.lk,A.aM("Example Usage 2",s,s,s,s,A.Q(q).p2.z.bo(B.j),s,s),A.aM('"'+r.d+'"',s,s,s,s,A.Q(q).p2.z,s,s)],t.p),B.aP,B.C,B.N,B.E)},
 $S:677}
 A.S_.prototype={
 h9(a,b){var s,r,q=null,p=$.aWS(),o=b.d3(p,t.rL),n=b.bE(p.gee(),t.Pv),m=b.d3($.aKP(),t.yp),l=A.bd(a,q,t.w).w.a.a>=640

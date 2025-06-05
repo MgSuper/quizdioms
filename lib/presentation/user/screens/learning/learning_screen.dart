@@ -43,11 +43,17 @@ class _LearningScreenState extends State<LearningScreen> {
                   children: const [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text('Idioms'),
+                      child: Text(
+                        'Idioms',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text('Phrases'),
+                      child: Text(
+                        'Phrases',
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                   ],
                 ),

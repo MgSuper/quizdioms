@@ -93,7 +93,7 @@ class _IdiomScreenState extends ConsumerState<IdiomScreen> {
                                             group.groupName,
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .titleMedium
+                                                .bodyMedium
                                                 ?.copyWith(
                                                   color: Color(0xFF316E79),
                                                   fontWeight: FontWeight.w600,
@@ -102,10 +102,13 @@ class _IdiomScreenState extends ConsumerState<IdiomScreen> {
                                           const SizedBox(height: 4),
                                           Text(
                                             formatDateTime(group.createdAt),
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.grey.shade600,
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelSmall
+                                                ?.copyWith(
+                                                  color: Colors.grey.shade600,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                           ),
                                         ],
                                       ),

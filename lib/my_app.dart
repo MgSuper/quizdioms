@@ -18,14 +18,30 @@ class MyApp extends ConsumerWidget {
       title: 'Quizdioms',
       theme: ThemeData(
         brightness: Brightness.light,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
-          brightness: Brightness.light, // ✅ match!
+        textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+          headlineLarge: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFD8E2E4),
+          ),
+          bodyLarge: const TextStyle(
+            fontSize: 18,
+            color: Color(0xFFD8E2E4),
+          ),
+          bodyMedium: const TextStyle(
+            fontSize: 16,
+            color: Color(0xFFD8E2E4),
+          ),
+          bodySmall: const TextStyle(
+            fontSize: 14,
+            color: Color(0xFFD8E2E4),
+          ),
+          labelSmall: const TextStyle(
+            fontSize: 12,
+            color: Color(0xFFD8E2E4),
+          ),
         ),
-        textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
-        // scaffoldBackgroundColor: Colors.transparent,
         appBarTheme: AppBarTheme(
-          // backgroundColor: Colors.transparent,
           centerTitle: false,
           titleTextStyle: TextStyle(
             color: Color(0xFFD8E2E4),
@@ -69,10 +85,6 @@ class MyApp extends ConsumerWidget {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
-          brightness: Brightness.dark, // ✅ match!
-        ),
         textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
         scaffoldBackgroundColor: Colors.black,
       ),

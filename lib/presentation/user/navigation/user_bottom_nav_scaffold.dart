@@ -95,6 +95,11 @@ class UserBottomNavScaffold extends StatelessWidget {
                 elevation: 0,
                 selectedLabelStyle: TextStyle(
                   color: Color(0xFFD8E2E4),
+                  fontSize: 16,
+                ),
+                unselectedLabelStyle: TextStyle(
+                  color: Color(0xFFD8E2E4),
+                  fontSize: 14,
                 ),
                 unselectedItemColor: Color(0xFFD8E2E4),
                 selectedItemColor: Color(0xFF316E79),
@@ -107,9 +112,6 @@ class UserBottomNavScaffold extends StatelessWidget {
                     case 1:
                       context.go('/user/learning');
                       break;
-                    // case 2:
-                    //   context.go('/user/phrases');
-                    //   break;
                     case 2:
                       context.go('/user/performance');
                       break;
@@ -123,10 +125,9 @@ class UserBottomNavScaffold extends StatelessWidget {
                       icon: Icon(Icons.quiz), label: 'Quizz'),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.book), label: 'Learning'),
-                  // BottomNavigationBarItem(
-                  //     icon: Icon(Icons.chat), label: 'Phrases'),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.bar_chart), label: 'Performance'),
+                      icon: Icon(Icons.notifications_on),
+                      label: 'Notification'),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.person), label: 'Profile'),
                 ],

@@ -17,45 +17,12 @@ class PhraseScreen extends ConsumerWidget {
       backgroundColor: Colors.transparent,
       body: Column(
         children: [
-          Expanded(
-            child: state.isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : state.items.isEmpty
-                    ? const Center(child: Text('No phrases found'))
-                    : ListView.builder(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 4, vertical: 4),
-                        itemCount: state.items.length,
-                        itemBuilder: (_, index) {
-                          final group = state.items[index];
-                          final isLearned = learnedIds.contains(group.id);
-
-                          return ListTile(
-                            title: Text(group.groupName),
-                            subtitle: Text('${group.phrases.length} phrases'),
-                            trailing: isLearned
-                                ? const Icon(Icons.check_circle,
-                                    color: Colors.green)
-                                : null,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) =>
-                                      PhraseGroupDetailScreen(group: group),
-                                ),
-                              );
-                            },
-                          );
-                        },
-                      ),
-          ),
           if (!state.isLoading && state.totalPages > 1)
             Container(
               color: Colors.transparent,
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: List.generate(
                   state.totalPages,
                   (index) {
@@ -66,11 +33,11 @@ class PhraseScreen extends ConsumerWidget {
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 4),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 8),
+                            horizontal: 12, vertical: 4),
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.blue : Colors.white,
+                          color: isSelected ? Color(0xFF316E79) : Colors.white,
                           border: Border.all(color: Colors.black12),
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(50),
                         ),
                         child: Text(
                           '$pageNumber',
@@ -87,6 +54,67 @@ class PhraseScreen extends ConsumerWidget {
                 ),
               ),
             ),
+          Expanded(
+            child: state.isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : state.items.isEmpty
+                    ? const Center(child: Text('No phrases found'))
+                    : ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        itemCount: state.items.length,
+                        itemBuilder: (_, index) {
+                          final group = state.items[index];
+                          final isLearned = learnedIds.contains(group.id);
+
+                          return Card(
+                            elevation: 6,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: ListTile(
+                              title: Text(
+                                group.groupName,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: Color(0xFF316E79),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              subtitle: Text(
+                                '${group.phrases.length} phrases',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall
+                                    ?.copyWith(
+                                      color: Colors.grey.shade600,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              trailing: isLearned
+                                  ? const Icon(
+                                      Icons.check_circle,
+                                      color: Color(0xFF316E79),
+                                    )
+                                  : const Icon(
+                                      Icons.check_circle,
+                                      color: Colors.grey,
+                                    ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) =>
+                                        PhraseGroupDetailScreen(group: group),
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
+          ),
         ],
       ),
     );

@@ -143,26 +143,24 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                           Colors.greenAccent,
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 8),
                       Text(
                         'Question ${currentIndex + 1} of ${widget.quiz.questions.length}',
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.white),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 8),
                       AnimatedSwitcher(
                         duration: const Duration(milliseconds: 300),
                         child: Text(
                           'Q: ${question.question}',
                           key: ValueKey(question.question),
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.white,
+                                  ),
                         ),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
                       ...question.options.map((option) {
                         final isSelected = selectedOption == option;
                         final isCorrectOption = option == question.answer;
@@ -176,34 +174,34 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                           tileColor = Colors.white38;
                         }
 
-                        return Padding(
-                          padding: kIsWeb
-                              ? EdgeInsets.zero
-                              : const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            margin: const EdgeInsets.symmetric(vertical: 6),
-                            decoration: BoxDecoration(
-                              color: tileColor ?? Colors.white24,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color:
-                                    isSelected ? Colors.white : Colors.white60,
-                                width: 2,
-                              ),
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(vertical: 6),
+                          decoration: BoxDecoration(
+                            color: tileColor ?? Colors.white24,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: isSelected ? Colors.white : Colors.white60,
+                              width: 2,
                             ),
-                            child: ListTile(
-                              title: Text(option,
-                                  style: const TextStyle(color: Colors.white)),
-                              onTap: isCorrect == null
-                                  ? () =>
-                                      setState(() => selectedOption = option)
-                                  : null,
+                          ),
+                          child: ListTile(
+                            title: Text(
+                              option,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
                             ),
+                            onTap: isCorrect == null
+                                ? () => setState(() => selectedOption = option)
+                                : null,
                           ),
                         );
                       }),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
                       if (isCorrect == null)
                         Padding(
                           padding: kIsWeb
@@ -234,12 +232,13 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                           children: [
                             Text(
                               isCorrect! ? 'Correct! 🎉' : 'Wrong! ❌',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: isCorrect!
-                                    ? Colors.white
-                                    : Colors.redAccent,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    color:
+                                        isCorrect! ? Colors.white : Colors.red,
+                                  ),
                             ),
                             const SizedBox(height: 16),
                             ElevatedButton(
@@ -248,6 +247,7 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
+                                padding: EdgeInsets.zero,
                                 backgroundColor: Colors.greenAccent,
                                 foregroundColor: Colors.white,
                                 minimumSize: const Size(double.infinity, 56),
@@ -256,8 +256,10 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                                 currentIndex < widget.quiz.questions.length - 1
                                     ? 'Next Question'
                                     : 'Finish',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(color: Colors.white),
                               ),
                             ),
                           ],

@@ -64,30 +64,6 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
       body: ResponsiveWrapper(
         child: scoreMapAsync.when(
           data: (scoreMap) {
-            // Detect newly unlocked quiz
-            // for (int i = 0; i < quizzes.length - 1; i++) {
-            // final currentQuizId = quizzes[i].id;
-            // final nextQuizId = quizzes[i + 1].id;
-            // final oldScore = _previousScores[currentQuizId] ?? 0.0;
-            // final newScore = scoreMap[currentQuizId] ?? 0.0;
-
-            // if (oldScore < 0.8 &&
-            //     newScore >= 0.8 &&
-            //     !_previousScores.containsKey(nextQuizId)) {
-            //   _unlockAnimationIndex = i + 1;
-            //   _confettiController.play();
-
-            //   Future.delayed(const Duration(seconds: 2), () {
-            //     if (mounted) {
-            //       setState(() => _unlockAnimationIndex = null);
-            //     }
-            //   });
-            //   break;
-            // }
-            // }
-
-            // _previousScores = Map.from(scoreMap);
-
             return ListView.builder(
               controller: _scrollController,
               padding: kIsWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
@@ -120,45 +96,6 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
                 return Stack(children: [
                   _buildQuizCard(
                       context, quiz, index, percent, isCompleted, isLocked),
-                  // if (_unlockAnimationIndex == index)
-                  // Positioned(
-                  //   right: 10,
-                  //   bottom: 15,
-                  //   child: Column(
-                  //     children: [
-                  //       ConfettiWidget(
-                  //         confettiController: _confettiController,
-                  //         blastDirectionality: BlastDirectionality.explosive,
-                  //         shouldLoop: false,
-                  //         colors: const [
-                  //           Colors.green,
-                  //           Colors.blue,
-                  //           Colors.purple
-                  //         ],
-                  //         numberOfParticles: 25,
-                  //         maxBlastForce: 20,
-                  //         minBlastForce: 5,
-                  //       ),
-                  //       const SizedBox(height: 8),
-                  //       Container(
-                  //         padding: const EdgeInsets.symmetric(
-                  //             horizontal: 12, vertical: 6),
-                  //         decoration: BoxDecoration(
-                  //           color: Colors.green.shade700.withAlpha(9),
-                  //           borderRadius: BorderRadius.circular(8),
-                  //         ),
-                  //         child: const Text(
-                  //           '🎉 New Quiz Unlocked!',
-                  //           style: TextStyle(
-                  //             color: Colors.white,
-                  //             fontWeight: FontWeight.bold,
-                  //             fontSize: 10,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // )
                 ]);
               },
             );
@@ -199,9 +136,13 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
                         lineWidth: 6.0,
                         animation: true,
                         percent: percent,
-                        center: Text('${(percent * 100).toStringAsFixed(0)}%',
-                            style: const TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold)),
+                        center: Text(
+                          '${(percent * 100).toStringAsFixed(0)}%',
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: const Color(0xFF316E79),
+                                  ),
+                        ),
                         progressColor: isCompleted
                             ? const Color(0xFF316E79)
                             : const Color(0xFF88A6AA),
@@ -216,19 +157,21 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
                               quiz.title,
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleMedium
+                                  .bodyMedium
                                   ?.copyWith(
-                                      color: const Color(0xFF316E79),
-                                      fontWeight: FontWeight.w600),
+                                    color: const Color(0xFF316E79),
+                                    fontWeight: FontWeight.w600,
+                                  ),
                             ),
                             Text(
                               '${quiz.questions.length} question${quiz.questions.length == 1 ? '' : 's'}',
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleMedium
+                                  .labelSmall
                                   ?.copyWith(
-                                      color: Colors.grey.shade600,
-                                      fontWeight: FontWeight.w600),
+                                    color: Colors.grey.shade600,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                             ),
                           ],
                         ),

@@ -39,13 +39,13 @@ class QuizResultScreen extends ConsumerWidget {
                 'Quiz Name:',
                 style: Theme.of(context)
                     .textTheme
-                    .headlineMedium!
+                    .headlineSmall!
                     .copyWith(color: Color(0xFFD8E2E4)),
               ),
               const SizedBox(height: 4),
               Text(
                 quiz.title,
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: Color(0xFFD8E2E4), fontStyle: FontStyle.italic),
               ),
               const SizedBox(height: 16),
@@ -53,13 +53,13 @@ class QuizResultScreen extends ConsumerWidget {
                 'Score:',
                 style: Theme.of(context)
                     .textTheme
-                    .headlineMedium!
+                    .headlineSmall!
                     .copyWith(color: Color(0xFFD8E2E4)),
               ),
               const SizedBox(height: 4),
               Text(
                 '$score%',
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     color: Color(0xFFD8E2E4), fontStyle: FontStyle.italic),
               ),
               const SizedBox(height: 24),
@@ -68,6 +68,7 @@ class QuizResultScreen extends ConsumerWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  padding: EdgeInsets.symmetric(horizontal: 12),
                   backgroundColor: Color(0xFFD8E2E4),
                   foregroundColor: Color(0xFF316E79),
                 ),
@@ -77,7 +78,10 @@ class QuizResultScreen extends ConsumerWidget {
                       completedQuizIdsProvider); // 👈 Optional, if needed
                   context.go('/user/quizzes', extra: quiz.id);
                 },
-                child: const Text('Back to Quizzes'),
+                child: Text(
+                  'Back to Quizzes',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               ),
             ],
           ),

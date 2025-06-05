@@ -26,7 +26,7 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
           IconButton(
             icon: Icon(
               isLearned ? Icons.check_circle : Icons.check_circle_outline,
-              color: isLearned ? Colors.green : null,
+              color: isLearned ? Color(0xFF316E79) : null,
             ),
             tooltip: isLearned ? 'Mark as Unlearned' : 'Mark as Learned',
             onPressed: () {
@@ -48,35 +48,57 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Phrase', style: labelStyle),
-              Text(phrase.phrase, style: contentStyle),
+              Text(
+                'Phrase',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.white),
+              ),
+              Text(
+                phrase.phrase,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               const SizedBox(height: 12),
-              Text('Explanation', style: labelStyle),
-              Text(phrase.meaning, style: contentStyle),
+              Text(
+                'Explanation',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.white),
+              ),
+              Text(
+                phrase.meaning,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               const SizedBox(height: 12),
-              Text('Example Usage 1', style: labelStyle),
-              Text(phrase.example1, style: contentStyle),
+              Text(
+                'Example Usage 1',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.white),
+              ),
+              Text(
+                phrase.example1,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
               const SizedBox(height: 12),
-              Text('Example Usage 2', style: labelStyle),
-              Text(phrase.example2, style: contentStyle),
+              Text(
+                'Example Usage 2',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Colors.white),
+              ),
+              Text(
+                phrase.example2,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
             ],
           );
         },
       ),
     );
   }
-
-  TextStyle get labelStyle => const TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Color(0xFFD8E2E4),
-        fontSize: 18,
-        // decoration: TextDecoration.underline,
-        // decorationColor: Colors.white,
-      );
-
-  TextStyle get contentStyle => const TextStyle(
-        color: Colors.white,
-        fontSize: 16,
-        fontStyle: FontStyle.italic,
-      );
 }

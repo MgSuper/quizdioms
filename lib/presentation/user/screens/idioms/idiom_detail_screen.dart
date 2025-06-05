@@ -132,7 +132,7 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
                   child: FlipCard(
                     speed: 600,
                     front: _buildGlassCard(
-                      title: 'Word',
+                      title: 'Idiom',
                       content: idiom.text,
                       gradientColors: [Color(0xFF316E79), Color(0xFF88A6AA)],
                     ),
@@ -181,41 +181,37 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
           border: Border.all(color: Colors.white.withAlpha(20)),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1C313A),
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.white,
+                        color: Colors.white,
+                      ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
+                Text(
                   'Tab to reveal the meaning',
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    decoration: TextDecoration.underline,
-                    decorationStyle: TextDecorationStyle.dashed,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF1C313A),
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.white,
+                        color: Colors.white,
+                      ),
                 ),
               ],
             ),
-            const Spacer(),
+            // const Spacer(),
+            const SizedBox(height: 16),
             Text(
               '"$content"',
-              style: const TextStyle(
-                fontSize: 18,
-                color: Color(0xFFD8E2E4),
-              ),
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.end,
             ),
           ],
@@ -223,89 +219,77 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
       ),
     );
   }
-}
 
-Widget _buildBackGlassCard({
-  required String title,
-  required String content,
-  required List<Color> gradientColors,
-}) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(24),
-      gradient: LinearGradient(
-        colors: gradientColors,
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black26,
-          blurRadius: 12,
-          offset: Offset(0, 6),
-        ),
-      ],
-    ),
-    child: Container(
-      margin: const EdgeInsets.all(2),
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+  Widget _buildBackGlassCard({
+    required String title,
+    required String content,
+    required List<Color> gradientColors,
+  }) {
+    return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withAlpha(15),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: Colors.white.withAlpha(20)),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Meaning :',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1C313A),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFD8E2E4),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Usage :',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1C313A),
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                '"$content"',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFD8E2E4),
-                ),
-              ),
-            ],
+        borderRadius: BorderRadius.circular(24),
+        gradient: LinearGradient(
+          colors: gradientColors,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 12,
+            offset: Offset(0, 6),
           ),
         ],
       ),
-    ),
-  );
+      child: Container(
+        margin: const EdgeInsets.all(2),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+        decoration: BoxDecoration(
+          color: Colors.white.withAlpha(15),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: Colors.white.withAlpha(20)),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Meaning',
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.white,
+                        color: Colors.white,
+                      ),
+                ),
+                const SizedBox(height: 8),
+                Text(title,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith()),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Usage',
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.white,
+                        color: Colors.white,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                Text('"$content"',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith()),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

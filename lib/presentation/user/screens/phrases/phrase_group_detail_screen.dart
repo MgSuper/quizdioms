@@ -24,28 +24,36 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
       backgroundColor: Colors.transparent,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 640),
-          child: Padding(
-            padding: padding,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 640),
             child: AppBar(
               backgroundColor: Colors.transparent,
-              title: Text(group.groupName),
+              title: Padding(
+                padding: padding,
+                child: Text(group.groupName),
+              ),
               centerTitle: false,
               actions: [
-                IconButton(
-                  icon: Icon(
-                    isLearned ? Icons.check_circle : Icons.check_circle_outline,
-                    color: isLearned ? Colors.teal : null,
+                Padding(
+                  padding: padding,
+                  child: IconButton(
+                    icon: Icon(
+                      isLearned
+                          ? Icons.check_circle
+                          : Icons.check_circle_outline,
+                      color: isLearned ? Colors.teal : null,
+                    ),
+                    tooltip:
+                        isLearned ? 'Mark as Unlearned' : 'Mark as Learned',
+                    onPressed: () {
+                      if (isLearned) {
+                        learnedController.unmarkAsLearned(group.id!);
+                      } else {
+                        learnedController.markAsLearned(group.id!);
+                      }
+                    },
                   ),
-                  tooltip: isLearned ? 'Mark as Unlearned' : 'Mark as Learned',
-                  onPressed: () {
-                    if (isLearned) {
-                      learnedController.unmarkAsLearned(group.id!);
-                    } else {
-                      learnedController.markAsLearned(group.id!);
-                    }
-                  },
                 ),
               ],
             ),

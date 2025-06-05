@@ -38,8 +38,10 @@ class PhraseScreen extends ConsumerWidget {
                         onTap: () => controller.goToPage(pageNumber),
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 4),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 4),
+                          padding: isWeb
+                              ? EdgeInsets.zero
+                              : const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
                           decoration: BoxDecoration(
                             color:
                                 isSelected ? Color(0xFF316E79) : Colors.white,

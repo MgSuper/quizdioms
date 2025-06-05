@@ -15,27 +15,39 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
     final learnedIds = ref.watch(userLearnedPhraseControllerProvider);
     final isLearned = learnedIds.contains(group.id);
 
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+    final padding = isWeb
+        ? const EdgeInsets.symmetric(horizontal: 24)
+        : const EdgeInsets.symmetric(horizontal: 16);
+
     return Scaffold(
       backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text(group.groupName),
-        actions: [
-          IconButton(
-            icon: Icon(
-              isLearned ? Icons.check_circle : Icons.check_circle_outline,
-              color: isLearned ? Color(0xFF316E79) : null,
-            ),
-            tooltip: isLearned ? 'Mark as Unlearned' : 'Mark as Learned',
-            onPressed: () {
-              if (isLearned) {
-                learnedController.unmarkAsLearned(group.id!);
-              } else {
-                learnedController.markAsLearned(group.id!);
-              }
-            },
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 640),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            title: Text(group.groupName),
+            centerTitle: false,
+            actions: [
+              IconButton(
+                icon: Icon(
+                  isLearned ? Icons.check_circle : Icons.check_circle_outline,
+                  color: isLearned ? Color(0xFF316E79) : null,
+                ),
+                tooltip: isLearned ? 'Mark as Unlearned' : 'Mark as Learned',
+                onPressed: () {
+                  if (isLearned) {
+                    learnedController.unmarkAsLearned(group.id!);
+                  } else {
+                    learnedController.markAsLearned(group.id!);
+                  }
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
       body: ListView.separated(
         padding: const EdgeInsets.all(16),

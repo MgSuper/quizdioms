@@ -15,7 +15,6 @@ import 'package:quizdioms/presentation/admin/presentation/screens/admin_dashboar
 import 'package:quizdioms/presentation/admin/presentation/screens/edit_idioms_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/manage_idioms_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/manage_quizzes_screen.dart';
-import 'package:quizdioms/presentation/admin/presentation/screens/manage_quotes_screen.dart';
 import 'package:quizdioms/presentation/admin/presentation/screens/user_list_screen.dart';
 import 'package:quizdioms/presentation/onboarding/landing_screen.dart';
 import 'package:quizdioms/presentation/providers/auth_provider.dart';

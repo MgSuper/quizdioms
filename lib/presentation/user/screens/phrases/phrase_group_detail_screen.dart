@@ -78,8 +78,8 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
                       .copyWith(color: Colors.white),
                 ),
                 Text(
-                  phrase.phrase,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  '"${phrase.phrase}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -90,8 +90,8 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
                       .copyWith(color: Colors.white),
                 ),
                 Text(
-                  phrase.meaning,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  '"${phrase.meaning}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -102,8 +102,8 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
                       .copyWith(color: Colors.white),
                 ),
                 Text(
-                  phrase.example1,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  '"${phrase.example1}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -114,8 +114,8 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
                       .copyWith(color: Colors.white),
                 ),
                 Text(
-                  phrase.example2,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  '"${phrase.example2}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             );

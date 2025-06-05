@@ -14,6 +14,8 @@ class PhraseScreen extends ConsumerWidget {
     final controller = ref.read(userPhraseGroupListControllerProvider.notifier);
     final learnedIds = ref.watch(userLearnedPhraseControllerProvider);
 
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: ResponsiveWrapper(
@@ -22,8 +24,9 @@ class PhraseScreen extends ConsumerWidget {
             if (!state.isLoading && state.totalPages > 1)
               Container(
                 color: Colors.transparent,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: isWeb
+                    ? EdgeInsets.zero
+                    : const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: List.generate(

@@ -92,7 +92,7 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
                             isLearned
                                 ? Icons.check_circle
                                 : Icons.add_circle_outline,
-                            color: isLearned ? Colors.green : Colors.white,
+                            color: isLearned ? Colors.teal : Colors.white,
                           ),
                           tooltip:
                               isLearned ? 'Already learned' : 'Mark as learned',

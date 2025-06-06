@@ -47,9 +47,7 @@ class _IdiomScreenState extends ConsumerState<IdiomScreen> {
             : AnimationLimiter(
                 child: ListView.builder(
                   controller: _scrollController,
-                  padding: isWeb
-                      ? EdgeInsets.zero
-                      : const EdgeInsets.symmetric(horizontal: 16),
+                  padding: isWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
                   itemCount: groups.length + (controller.hasMore ? 1 : 0),
                   itemBuilder: (context, index) {
                     if (index == groups.length) {

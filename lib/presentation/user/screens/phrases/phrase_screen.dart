@@ -69,7 +69,7 @@ class PhraseScreen extends ConsumerWidget {
                   : state.items.isEmpty
                       ? const Center(child: Text('No phrases found'))
                       : ListView.builder(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.all(16),
                           itemCount: state.items.length,
                           itemBuilder: (_, index) {
                             final group = state.items[index];

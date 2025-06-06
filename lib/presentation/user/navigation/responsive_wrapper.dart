@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ResponsiveWrapper extends StatelessWidget {
@@ -7,7 +6,7 @@ class ResponsiveWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isWeb = kIsWeb;
+    final isWeb = MediaQuery.of(context).size.width >= 640;
 
     return isWeb
         ? Center(

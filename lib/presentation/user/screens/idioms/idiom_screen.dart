@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -38,6 +37,8 @@ class _IdiomScreenState extends ConsumerState<IdiomScreen> {
     final controller = ref.watch(paginatedIdiomProvider.notifier);
     final groups = ref.watch(paginatedIdiomProvider);
 
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: ResponsiveWrapper(
@@ -46,7 +47,9 @@ class _IdiomScreenState extends ConsumerState<IdiomScreen> {
             : AnimationLimiter(
                 child: ListView.builder(
                   controller: _scrollController,
-                  padding: kIsWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
+                  padding: isWeb
+                      ? EdgeInsets.zero
+                      : const EdgeInsets.symmetric(horizontal: 16),
                   itemCount: groups.length + (controller.hasMore ? 1 : 0),
                   itemBuilder: (context, index) {
                     if (index == groups.length) {

@@ -106,12 +106,16 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
   Widget build(BuildContext context) {
     final question = widget.quiz.questions[currentIndex];
 
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: UserAppBar(title: widget.quiz.title),
       body: ResponsiveWrapper(
         child: Padding(
-          padding: kIsWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
+          padding: isWeb
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(horizontal: 16),
           child: Stack(
             children: [
               // 🎉 Confetti

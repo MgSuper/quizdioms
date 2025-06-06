@@ -126,7 +126,7 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
 
               return Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 100, horizontal: 0),
+                    const EdgeInsets.symmetric(vertical: 100, horizontal: 16),
                 child: Transform.scale(
                   scale: scale,
                   child: FlipCard(

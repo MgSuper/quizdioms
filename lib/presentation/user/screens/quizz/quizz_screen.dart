@@ -1,5 +1,4 @@
 import 'package:confetti/confetti.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,6 +57,8 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
     final quizzes = ref.watch(paginatedQuizProvider);
     final scoreMapAsync = ref.watch(userQuizScoreProvider);
 
+    final isWeb = MediaQuery.of(context).size.width >= 640;
+
     return Scaffold(
       appBar: const UserAppBar(title: 'Quizzes'),
       backgroundColor: Colors.transparent,
@@ -66,7 +67,9 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
           data: (scoreMap) {
             return ListView.builder(
               controller: _scrollController,
-              padding: kIsWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
+              padding: isWeb
+                  ? EdgeInsets.zero
+                  : const EdgeInsets.symmetric(horizontal: 16),
               itemCount: quizzes.length + (controller.hasMore ? 1 : 0),
               itemBuilder: (context, index) {
                 if (index == quizzes.length) {

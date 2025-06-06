@@ -72,50 +72,50 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
               children: [
                 Text(
                   'Phrase',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  '"${phrase.phrase}"',
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
                       .copyWith(color: Colors.white),
+                ),
+                Text(
+                  '"${phrase.phrase}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
                 Text(
                   'Explanation',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  '"${phrase.meaning}"',
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
                       .copyWith(color: Colors.white),
+                ),
+                Text(
+                  '"${phrase.meaning}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
                 Text(
                   'Example Usage 1',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  '"${phrase.example1}"',
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
                       .copyWith(color: Colors.white),
+                ),
+                Text(
+                  '"${phrase.example1}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
                 Text(
                   'Example Usage 2',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  '"${phrase.example2}"',
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
                       .copyWith(color: Colors.white),
+                ),
+                Text(
+                  '"${phrase.example2}"',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             );

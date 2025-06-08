@@ -11,7 +11,7 @@ class LearningScreen extends StatefulWidget {
 }
 
 class _LearningScreenState extends State<LearningScreen> {
-  bool showIdioms = true;
+  bool showPhrases = true;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,10 @@ class _LearningScreenState extends State<LearningScreen> {
               Padding(
                 padding: padding,
                 child: ToggleButtons(
-                  isSelected: [showIdioms, !showIdioms],
+                  isSelected: [showPhrases, !showPhrases],
                   onPressed: (index) {
                     setState(() {
-                      showIdioms = index == 0;
+                      showPhrases = index == 0;
                     });
                   },
                   borderRadius: BorderRadius.circular(12),
@@ -44,14 +44,14 @@ class _LearningScreenState extends State<LearningScreen> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        'Idioms',
+                        'Phrases',
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        'Phrases',
+                        'Idioms',
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
@@ -59,7 +59,7 @@ class _LearningScreenState extends State<LearningScreen> {
                 ),
               ),
               Expanded(
-                child: showIdioms ? const IdiomScreen() : const PhraseScreen(),
+                child: showPhrases ? const PhraseScreen() : const IdiomScreen(),
               ),
             ],
           ),

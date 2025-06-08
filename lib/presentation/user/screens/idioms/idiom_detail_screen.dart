@@ -1,6 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/data/models/idioms.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 import 'package:quizdioms/presentation/user/screens/providers/learned_idiom_provider.dart';
@@ -18,6 +19,8 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
   bool _isSubmitting = false;
   final PageController _pageController = PageController(viewportFraction: 0.75);
   double _currentPage = 0;
+
+  final FlutterTts flutterTts = FlutterTts();
 
   @override
   void initState() {
@@ -41,6 +44,13 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
     await repo.markAsLearned(widget.group.id);
     ref.invalidate(isGroupLearnedProvider(widget.group.id));
     setState(() => _isSubmitting = false);
+  }
+
+  Future<void> speak(String text) async {
+    await flutterTts.setLanguage('en-US');
+    await flutterTts.setPitch(1.0); // optional
+    await flutterTts.setSpeechRate(0.45); // slower pace
+    await flutterTts.speak(text);
   }
 
   @override
@@ -200,10 +210,10 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
                 Text(
                   'Tab to reveal the meaning',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.white,
-                        color: Colors.white,
-                      ),
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.white,
+                      color: Colors.white,
+                      fontSize: 12.0),
                 ),
               ],
             ),
@@ -271,16 +281,26 @@ class _IdiomDetailScreenState extends ConsumerState<IdiomDetailScreen> {
             ),
             const SizedBox(height: 16),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Usage',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        decoration: TextDecoration.underline,
-                        decorationColor: Colors.white,
-                        color: Colors.white,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Usage',
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              decoration: TextDecoration.underline,
+                              decorationColor: Colors.white,
+                              color: Colors.white,
+                            ),
                       ),
-                  textAlign: TextAlign.center,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.volume_up, color: Colors.white),
+                      tooltip: 'Listen',
+                      onPressed: () => speak(content),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 8),
                 Text('"$content"',

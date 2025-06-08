@@ -22,9 +22,9 @@ import 'package:quizdioms/presentation/user/auth/sign_in_screen.dart';
 import 'package:quizdioms/presentation/user/auth/sign_up_screen.dart';
 import 'package:quizdioms/presentation/user/navigation/user_bottom_nav_scaffold.dart';
 import 'package:quizdioms/presentation/user/screens/idioms/idiom_detail_screen.dart';
-import 'package:quizdioms/presentation/user/screens/performance_screen.dart';
+import 'package:quizdioms/presentation/user/screens/notification_screen.dart';
 import 'package:quizdioms/presentation/user/screens/phrases/phrase_group_detail_screen.dart';
-import 'package:quizdioms/presentation/user/screens/profile_screen.dart';
+import 'package:quizdioms/presentation/user/screens/profile/profile_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quiz_attempt_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quizz_result_screen.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/quizz_screen.dart';
@@ -85,7 +85,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/user/performance',
-            builder: (_, __) => const PerformanceScreen(),
+            builder: (_, __) => const NotificationScreen(),
           ),
           GoRoute(
             path: '/user/profile',

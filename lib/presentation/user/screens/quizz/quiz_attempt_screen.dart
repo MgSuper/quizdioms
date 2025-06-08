@@ -90,12 +90,15 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
 
+    final score = ((correctAnswers / totalQuestions) * 100).round();
+
     await FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
         .collection('quizResults')
         .doc(quizId)
         .set({
+      'score': score,
       'correctCount': correctCount,
       'totalQuestions': totalQuestions,
       'completedAt': FieldValue.serverTimestamp(),

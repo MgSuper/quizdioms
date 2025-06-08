@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quizdioms/presentation/admin/manage_phrases/data/models/phrase_group_model.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 import 'package:quizdioms/presentation/user/screens/phrases/providers/user_phrase_metadata_providers.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class PhraseGroupDetailScreen extends ConsumerWidget {
   final PhraseGroupModel group;
@@ -19,6 +20,14 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
     final isWeb = MediaQuery.of(context).size.width >= 640;
     final padding =
         isWeb ? const EdgeInsets.symmetric(horizontal: 24) : EdgeInsets.zero;
+    final FlutterTts flutterTts = FlutterTts();
+
+    Future<void> speak(String text) async {
+      await flutterTts.setLanguage('en-US');
+      await flutterTts.setPitch(1.0); // optional
+      await flutterTts.setSpeechRate(0.45); // slower pace
+      await flutterTts.speak(text);
+    }
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -77,9 +86,21 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
                       .bodyMedium!
                       .copyWith(color: Colors.white),
                 ),
-                Text(
-                  '"${phrase.phrase}"',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        '"${phrase.phrase}"',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.volume_up, color: Colors.white),
+                      tooltip: 'Listen',
+                      onPressed: () => speak(phrase.phrase),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -94,24 +115,48 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  'Example Usage 1',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.white),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Example Usage 1',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: Colors.white),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.volume_up, color: Colors.white),
+                      tooltip: 'Listen',
+                      onPressed: () => speak(phrase.example2),
+                    ),
+                  ],
                 ),
                 Text(
                   '"${phrase.example1}"',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  'Example Usage 2',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.white),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Example Usage 2',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: Colors.white),
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.volume_up, color: Colors.white),
+                      tooltip: 'Listen',
+                      onPressed: () => speak(phrase.example2),
+                    ),
+                  ],
                 ),
                 Text(
                   '"${phrase.example2}"',

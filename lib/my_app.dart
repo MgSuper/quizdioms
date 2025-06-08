@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizdioms/presentation/providers/theme_mode_provider.dart';
 import 'package:quizdioms/presentation/routes/app_router.dart';
 
 class MyApp extends ConsumerWidget {
@@ -10,6 +11,11 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
         GlobalKey<ScaffoldMessengerState>();
+    final themeModeAsync = ref.watch(themeModeProvider);
+
+    if (themeModeAsync is AsyncLoading) {
+      return const CircularProgressIndicator(); // or splash screen
+    }
 
     return MaterialApp.router(
       routerConfig: ref.watch(goRouterProvider),
@@ -88,7 +94,7 @@ class MyApp extends ConsumerWidget {
         textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
         scaffoldBackgroundColor: Colors.black,
       ),
-      themeMode: ThemeMode.system,
+      themeMode: themeModeAsync.value ?? ThemeMode.system,
     );
   }
 }

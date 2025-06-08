@@ -45,7 +45,7 @@ class UserBottomNavScaffold extends StatelessWidget {
                   NavigationRailDestination(
                       icon: Icon(Icons.book), label: Text('Learning')),
                   NavigationRailDestination(
-                      icon: Icon(Icons.bar_chart), label: Text('Performance')),
+                      icon: Icon(Icons.bar_chart), label: Text('Notification')),
                   NavigationRailDestination(
                       icon: Icon(Icons.person), label: Text('Profile')),
                 ],

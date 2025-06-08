@@ -38,10 +38,8 @@ class PhraseScreen extends ConsumerWidget {
                         onTap: () => controller.goToPage(pageNumber),
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 4),
-                          padding: isWeb
-                              ? EdgeInsets.zero
-                              : const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 4),
                           decoration: BoxDecoration(
                             color:
                                 isSelected ? Color(0xFF316E79) : Colors.white,
@@ -69,7 +67,9 @@ class PhraseScreen extends ConsumerWidget {
                   : state.items.isEmpty
                       ? const Center(child: Text('No phrases found'))
                       : ListView.builder(
-                          padding: const EdgeInsets.all(16),
+                          padding: isWeb
+                              ? EdgeInsets.zero
+                              : const EdgeInsets.all(16),
                           itemCount: state.items.length,
                           itemBuilder: (_, index) {
                             final group = state.items[index];

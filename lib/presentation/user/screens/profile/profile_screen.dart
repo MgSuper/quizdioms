@@ -35,10 +35,10 @@ class ProfileScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: const UserAppBar(title: 'Profile'),
-      body: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 640),
-        child: SingleChildScrollView(
-          padding: isWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
+      body: SingleChildScrollView(
+        padding: isWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 640),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

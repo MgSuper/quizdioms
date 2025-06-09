@@ -10,14 +10,18 @@ class ThemeModeNotifier extends AsyncNotifier<ThemeMode> {
     final prefs = await SharedPreferences.getInstance();
     final mode = prefs.getString(_themeKey);
 
-    switch (mode) {
-      case 'light':
-        return ThemeMode.light;
-      case 'dark':
-        return ThemeMode.dark;
-      default:
-        return ThemeMode.system;
+    if (mode != null) {
+      switch (mode) {
+        case 'light':
+          return ThemeMode.light;
+        case 'dark':
+          return ThemeMode.dark;
+      }
     }
+
+    // Fallback: if web, default to dark
+    final isWeb = identical(0, 0.0); // crude but works
+    return isWeb ? ThemeMode.dark : ThemeMode.system;
   }
 
   Future<void> toggle() async {

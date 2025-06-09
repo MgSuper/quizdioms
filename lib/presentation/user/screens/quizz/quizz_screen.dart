@@ -1,4 +1,3 @@
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,55 +5,23 @@ import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
-import 'package:quizdioms/presentation/user/screens/providers/paginated_quiz_controller.dart';
-import 'package:quizdioms/presentation/user/screens/providers/user_quiz_score_provider.dart';
+import 'package:quizdioms/presentation/user/screens/quizz/models/paginated_quiz_state.dart';
+import 'package:quizdioms/presentation/user/screens/quizz/providers/paginated_quiz_controller.dart';
+import 'package:quizdioms/presentation/user/screens/quizz/providers/paginated_quiz_provider.dart';
+import 'package:quizdioms/presentation/user/screens/quizz/providers/user_quiz_score_provider.dart';
 import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-class QuizzScreen extends ConsumerStatefulWidget {
+class QuizzScreen extends ConsumerWidget {
   const QuizzScreen({super.key});
 
   @override
-  ConsumerState<QuizzScreen> createState() => _QuizzScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final quizzes = ref.watch(paginatedQuizItemsProvider);
 
-class _QuizzScreenState extends ConsumerState<QuizzScreen> {
-  final _scrollController = ScrollController();
-  late ConfettiController _confettiController;
-  // int? _unlockAnimationIndex;
-  // Map<String, double> _previousScores = {};
+    final state = ref.watch(paginatedQuizControllerProvider);
+    final quizController = ref.read(paginatedQuizControllerProvider.notifier);
 
-  @override
-  void initState() {
-    super.initState();
-    _confettiController =
-        ConfettiController(duration: const Duration(seconds: 2));
-
-    // ref.read(userQuizScoreProvider).whenData((scoreMap) {
-    //   _previousScores = Map.from(scoreMap);
-    // });
-
-    _scrollController.addListener(() {
-      final controller = ref.read(paginatedQuizProvider.notifier);
-      if (_scrollController.position.pixels >=
-              _scrollController.position.maxScrollExtent - 100 &&
-          !controller.isLoading &&
-          controller.hasMore) {
-        controller.fetchNext();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _confettiController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = ref.watch(paginatedQuizProvider.notifier);
-    final quizzes = ref.watch(paginatedQuizProvider);
     final scoreMapAsync = ref.watch(userQuizScoreProvider);
 
     final isWeb = MediaQuery.of(context).size.width >= 640;
@@ -65,46 +32,71 @@ class _QuizzScreenState extends ConsumerState<QuizzScreen> {
       body: ResponsiveWrapper(
         child: scoreMapAsync.when(
           data: (scoreMap) {
-            return ListView.builder(
-              controller: _scrollController,
-              padding: isWeb
-                  ? EdgeInsets.zero
-                  : const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: quizzes.length + (controller.hasMore ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index == quizzes.length) {
-                  return controller.hasMore
-                      ? const Padding(
-                          padding: EdgeInsets.all(24.0),
-                          child: Center(child: CircularProgressIndicator()),
-                        )
-                      : const SizedBox.shrink();
-                }
+            return Column(
+              children: [
+                _buildPaginationControls(state, quizController),
+                Expanded(
+                  child: ListView.builder(
+                      padding: isWeb
+                          ? EdgeInsets.zero
+                          : const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: quizzes.length,
+                      itemBuilder: (context, index) {
+                        final quiz = quizzes[index];
+                        final percent = scoreMap[quiz.id] ?? 0.0;
+                        final isCompleted = percent >= 0.8;
 
-                final quiz = quizzes[index];
-                final percent = scoreMap[quiz.id] ?? 0.0;
-                final isCompleted = percent >= 0.8;
+                        // Global index of the quiz
+                        final globalIndex = (state.currentPage - 1) * 5 + index;
 
-                int lastUnlockedIndex = -1;
-                for (int i = 0; i < quizzes.length; i++) {
-                  final score = scoreMap[quizzes[i].id] ?? 0.0;
-                  if (score >= 0.8) {
-                    lastUnlockedIndex = i;
-                  } else {
-                    break;
-                  }
-                }
-                final isLocked = index > lastUnlockedIndex + 1;
+                        // Total number of completed quizzes
+                        final unlockedCount =
+                            scoreMap.values.where((v) => v >= 0.8).length;
 
-                return Stack(children: [
-                  _buildQuizCard(
-                      context, quiz, index, percent, isCompleted, isLocked),
-                ]);
-              },
+                        // Lock if this quiz comes after the last completed one
+                        final isLocked = globalIndex > unlockedCount;
+
+                        return _buildQuizCard(
+                          context,
+                          quiz,
+                          index,
+                          percent,
+                          isCompleted,
+                          isLocked,
+                        );
+                      }),
+                ),
+              ],
             );
           },
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (e, _) => Center(child: Text('Error: $e')),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPaginationControls(
+      PaginatedQuizState state, PaginatedQuizController controller) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: List.generate(
+        state.totalPages,
+        (index) => Padding(
+          padding:
+              index == 0 ? const EdgeInsets.only(left: 16.0) : EdgeInsets.zero,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor:
+                  index + 1 == state.currentPage ? Colors.white : Colors.grey,
+              minimumSize: const Size(36, 36),
+              padding: EdgeInsets.zero,
+            ),
+            onPressed: () {
+              controller.goToPage(index + 1);
+            },
+            child: Text('${index + 1}'),
+          ),
         ),
       ),
     );

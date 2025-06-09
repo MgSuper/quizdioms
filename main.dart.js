@@ -95969,31 +95969,35 @@ A.aGS.prototype={
 $1(a){return new A.p6(a.c6($.aM8(),t.Kp))},
 $S:697}
 A.y4.prototype={
-fe(a,b){var s,r,q,p,o,n,m,l,k,j,i=null,h=A.aMw(b.c6($.aHB(),t.ux),t.t6),g=h==null?i:h.a,f=b.c6($.aYl(),t.oe)
-h=$.qJ()
-s=b.c6(h,t.m6)
-r=h.ch
-if(r===$){q=h.$ti
-p=A.aSP(h,q.c,q.y[1])
+fe(a,b){var s,r,q,p,o,n,m,l,k,j,i,h=null,g=A.aMw(b.c6($.aHB(),t.ux),t.t6),f=g==null?h:g.a,e=b.c6($.aYl(),t.oe)
+g=$.qJ()
+s=b.c6(g,t.m6)
+r=g.ch
+if(r===$){q=g.$ti
+p=A.aSP(g,q.c,q.y[1])
 r!==$&&A.a6()
-h.ch=p
+g.ch=p
 r=p}o=b.bI(r,t.aN)
 n=s.gm()
 if(n==null)n=B.ca
-if(g==null)return B.QG
-h=g.a.c.a
-q=h.b
+if(f==null)return B.QG
+g=f.a.c.a
+q=g.b
 m=q==null
-l=m?i:B.c.W(q,0,1).toUpperCase()
+l=m?h:B.c.W(q,0,1).toUpperCase()
 if(l==null)l="?"
-k=A.b5(a,i,t.w).w.a.a>=640?B.U:B.bX
-j=A.aF(l,i,i,i,i,B.VI,i,i)
+k=A.b5(a,h,t.w).w.a.a>=640
+j=k?B.U:B.bX
+i=A.aF(l,h,h,h,h,B.VI,h,h)
 if(m)q=""
 m=t.p
-h=A.b([A.dL(A.b([new A.OR(j,B.i,32,i),B.lB,A.fo(A.bX(A.b([A.aF(q,i,i,i,i,A.M(a).p2.z,i,i),B.ft,A.aF(h.a,i,i,i,i,A.M(a).p2.Q,i,i)],m),B.ax,B.v,B.D,B.F),1,i)],m),B.z,B.v,B.D),B.iz,B.YF,B.fs,A.BH(f,new A.alR(),new A.alS(),new A.alT(a),t.O9,t.l),B.lC,B.Y5,B.fs],m)
-if(s.ghm())h.push(B.fQ)
-else h.push(A.dL(A.b([B.Yp,new A.V_(n===B.bE,new A.alU(o),B.i,i)],m),B.z,B.cn,B.D))
-return A.dW(B.a_i,B.m,new A.fQ(A.Uv(A.bX(h,B.ax,B.v,B.D,B.F),k),i),i)}}
+g=A.b([A.dL(A.b([new A.OR(i,B.i,32,h),B.lB,A.fo(A.bX(A.b([A.aF(q,h,h,h,h,A.M(a).p2.z,h,h),B.ft,A.aF(g.a,h,h,h,h,A.M(a).p2.Q,h,h)],m),B.ax,B.v,B.D,B.F),1,h)],m),B.z,B.v,B.D),B.iz,B.YF,B.fs,A.BH(e,new A.alR(),new A.alS(),new A.alT(a),t.O9,t.l),B.lC],m)
+q=!k
+if(q)g.push(B.Y5)
+if(q)g.push(B.fs)
+if(s.ghm()&&q)g.push(B.fQ)
+else if(q)g.push(A.dL(A.b([B.Yp,new A.V_(n===B.bE,new A.alU(o),B.i,h)],m),B.z,B.cn,B.D))
+return A.dW(B.a_i,B.m,new A.fQ(A.Uv(A.bX(g,B.ax,B.v,B.D,B.F),j),h),h)}}
 A.alR.prototype={
 $1(a){var s=null,r=A.aF("Idioms learned: "+a.a,s,s,s,s,s,s,s),q=A.aF("Phrases learned: "+a.b,s,s,s,s,s,s,s),p=A.aF("Quizzes completed: "+a.c,s,s,s,s,s,s,s),o=a.d
 return A.bX(A.b([r,q,p,A.aF("Avg score: "+A.k(o==null?"--":o)+"%",s,s,s,s,s,s,s)],t.p),B.ax,B.v,B.D,B.F)},

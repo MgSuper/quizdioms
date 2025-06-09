@@ -41,6 +41,7 @@ class ProfileScreen extends ConsumerWidget {
           constraints: const BoxConstraints(maxWidth: 640),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Avatar & Email
               Row(

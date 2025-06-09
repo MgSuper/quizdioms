@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quizdioms/presentation/providers/theme_mode_provider.dart';
-import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 import 'package:quizdioms/presentation/user/screens/profile/providers/user_progress_provider.dart';
 import 'package:quizdioms/presentation/providers/auth_provider.dart';
 import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
@@ -30,18 +29,15 @@ class ProfileScreen extends ConsumerWidget {
     }
 
     final avatarLetter = user.email?.substring(0, 1).toUpperCase() ?? '?';
-    final isWeb = MediaQuery.of(context).size.width >= 640;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: const UserAppBar(title: 'Profile'),
-      body: SingleChildScrollView(
-        padding: isWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
+      body: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 640),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Avatar & Email
               Row(

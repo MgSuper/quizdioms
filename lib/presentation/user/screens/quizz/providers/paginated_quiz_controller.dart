@@ -4,7 +4,7 @@ import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz
 import 'package:quizdioms/presentation/user/screens/quizz/models/paginated_quiz_state.dart';
 
 class PaginatedQuizController extends Notifier<PaginatedQuizState> {
-  final int _limit = 5;
+  final int _limit = 10;
   late final FirebaseFirestore _firestore;
 
   /// To keep track of page start docs

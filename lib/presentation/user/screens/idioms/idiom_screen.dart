@@ -121,8 +121,8 @@ class IdiomScreen extends ConsumerWidget {
                                                                   isDark)
                                                               ? Colors
                                                                   .grey.shade700
-                                                              : Color(
-                                                                  0xFF316E79),
+                                                              : Colors.grey
+                                                                  .shade700,
                                                 ),
                                                 loading: () => const SizedBox(
                                                   width: 20,

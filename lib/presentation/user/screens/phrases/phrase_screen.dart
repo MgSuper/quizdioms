@@ -104,7 +104,7 @@ class PhraseScreen extends ConsumerWidget {
                                           ? Color(0xFF316E79)
                                           : (!isLearned && isDark)
                                               ? Colors.grey.shade700
-                                              : Color(0xFF316E79),
+                                              : Colors.grey.shade700,
                                 ),
                                 onTap: () {
                                   Navigator.push(

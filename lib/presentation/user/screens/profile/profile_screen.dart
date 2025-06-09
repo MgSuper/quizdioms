@@ -39,6 +39,7 @@ class ProfileScreen extends ConsumerWidget {
           padding: isWeb ? EdgeInsets.zero : const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               // Avatar & Email
               Row(
@@ -106,12 +107,14 @@ class ProfileScreen extends ConsumerWidget {
               const SizedBox(height: 32),
 
               // Settings
-              const Text('Settings',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 12),
-              if (themeModeAsync.isLoading)
+              if (!isWeb)
+                const Text('Settings',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              if (!isWeb) const SizedBox(height: 12),
+              if (themeModeAsync.isLoading && !isWeb)
                 const CircularProgressIndicator()
-              else
+              else if (!isWeb)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

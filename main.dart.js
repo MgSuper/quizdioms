@@ -96090,7 +96090,7 @@ p=q.d
 p===$&&A.a()
 o=p.bV("quizzes").t7("createdAt")
 s=2
-return A.q((a>1&&q.e.length>=a-1?o.yv(q.e[a-2]):o).nS(5).da(),$async$qO)
+return A.q((a>1&&q.e.length>=a-1?o.yv(q.e[a-2]):o).nS(10).da(),$async$qO)
 case 2:n=c
 if(n.ghi().length!==0){m=q.e
 if(m.length<a)m.push(B.b.gaa(n.ghi()))}p=p.bV("quizzes")
@@ -96100,7 +96100,7 @@ s=3
 return A.q(new A.a5s(p,m).da(),$async$qO)
 case 3:l=c.a.a
 l.toString
-k=B.d.kh(l/5)
+k=B.d.kh(l/10)
 m=n.ghi()
 p=A.U(m).i("V<1,eP>")
 j=A.R(new A.V(m,new A.akN(),p),!0,p.i("a3.E"))

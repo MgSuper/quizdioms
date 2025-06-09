@@ -94825,7 +94825,7 @@ if(o)q=""
 o=t.p
 o=A.b([A.dT(A.b([new A.OF(l,B.i,32,k),B.lw,A.fl(A.bW(A.b([A.aE(q,k,k,k,k,A.P(a).p2.z,k,k),B.fr,A.aE(j.a,k,k,k,k,A.P(a).p2.Q,k,k)],o),B.ax,B.v,B.C,B.D),1,k)],o),B.A,B.v,B.C),B.ix,B.Yg,B.iw,A.By(h,new A.aly(),new A.alz(),new A.alA(a),t.O9,t.l),B.lx],o)
 s.ghh()
-return A.dU(B.ZV,B.m,new A.db(B.dA,A.Ui(A.bW(o,B.ax,B.v,B.C,B.D),m),k),k)}}
+return A.dU(B.ZV,B.m,A.Ui(new A.db(B.dA,A.bW(o,B.ax,B.v,B.C,B.D),k),m),k)}}
 A.aly.prototype={
 $1(a){var s=null,r=A.aE("Idioms learned: "+a.a,s,s,s,s,s,s,s),q=A.aE("Phrases learned: "+a.b,s,s,s,s,s,s,s),p=A.aE("Quizzes completed: "+a.c,s,s,s,s,s,s,s),o=a.d
 return A.bW(A.b([r,q,p,A.aE("Avg score: "+A.k(o==null?"--":o)+"%",s,s,s,s,s,s,s)],t.p),B.ax,B.v,B.C,B.D)},

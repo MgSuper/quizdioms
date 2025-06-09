@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
-import 'package:quizdioms/presentation/providers/theme_mode_provider.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/providers/completed_quizz_ids_provider.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/providers/user_quiz_score_provider.dart';
 import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
@@ -23,10 +22,6 @@ class QuizResultScreen extends ConsumerWidget {
     final score = ((correctAnswers / totalQuestions) * 100).round();
 
     final isWeb = MediaQuery.of(context).size.width >= 640;
-
-    final themeModeAsync = ref.watch(themeModeProvider);
-    final themeMode = themeModeAsync.value ?? ThemeMode.system;
-    final isDark = themeMode == ThemeMode.dark;
 
     return Scaffold(
       backgroundColor: Colors.transparent,

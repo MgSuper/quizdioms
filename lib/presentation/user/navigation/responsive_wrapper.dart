@@ -9,14 +9,11 @@ class ResponsiveWrapper extends StatelessWidget {
     final isWeb = MediaQuery.of(context).size.width >= 640;
 
     return isWeb
-        ? Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 640),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-                child: child,
-              ),
+        ? ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 640),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+              child: child,
             ),
           )
         : child;

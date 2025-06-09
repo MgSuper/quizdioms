@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
 import 'package:confetti/confetti.dart';
+import 'package:quizdioms/presentation/providers/theme_mode_provider.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
 
@@ -111,6 +111,10 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
 
     final isWeb = MediaQuery.of(context).size.width >= 640;
 
+    final themeModeAsync = ref.watch(themeModeProvider);
+    final themeMode = themeModeAsync.value ?? ThemeMode.system;
+    final isDark = themeMode == ThemeMode.dark;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: UserAppBar(title: widget.quiz.title),
@@ -174,9 +178,11 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
 
                         Color? tileColor;
                         if (isCorrect != null) {
-                          tileColor = isCorrectOption
-                              ? Colors.greenAccent
-                              : (isSelected ? Colors.red[100] : null);
+                          tileColor = (isCorrectOption && isDark)
+                              ? Colors.green
+                              : (isCorrectOption && !isDark)
+                                  ? Colors.greenAccent
+                                  : (isSelected ? Colors.red[300] : null);
                         } else if (isSelected) {
                           tileColor = Colors.white38;
                         }
@@ -188,7 +194,7 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                             color: tileColor ?? Colors.white24,
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: isSelected ? Colors.white : Colors.white60,
+                              color: isSelected ? Colors.white : Colors.white30,
                               width: 2,
                             ),
                           ),
@@ -210,27 +216,24 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                       }),
                       const SizedBox(height: 16),
                       if (isCorrect == null)
-                        Padding(
-                          padding: kIsWeb
-                              ? EdgeInsets.zero
-                              : const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: ElevatedButton(
-                            onPressed:
-                                selectedOption == null ? null : _submitAnswer,
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              backgroundColor: Colors.greenAccent,
-                              foregroundColor: Colors.white,
-                              minimumSize: const Size(double.infinity, 56),
+                        ElevatedButton(
+                          onPressed:
+                              selectedOption == null ? null : _submitAnswer,
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            child: const Text(
-                              'Submit Answer',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            backgroundColor:
+                                isDark ? Colors.white : Colors.greenAccent,
+                            foregroundColor:
+                                isDark ? Colors.black : Colors.white,
+                            minimumSize: const Size(double.infinity, 56),
+                          ),
+                          child: const Text(
+                            'Submit Answer',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         )
@@ -255,8 +258,10 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 padding: EdgeInsets.zero,
-                                backgroundColor: Colors.greenAccent,
-                                foregroundColor: Colors.white,
+                                backgroundColor:
+                                    isDark ? Colors.white : Colors.greenAccent,
+                                foregroundColor:
+                                    isDark ? Colors.black : Colors.white,
                                 minimumSize: const Size(double.infinity, 56),
                               ),
                               child: Text(
@@ -266,7 +271,10 @@ class _QuizAttemptScreenState extends ConsumerState<QuizAttemptScreen> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
-                                    .copyWith(color: Colors.white),
+                                    .copyWith(
+                                        color: isDark
+                                            ? Colors.black
+                                            : Colors.white),
                               ),
                             ),
                           ],

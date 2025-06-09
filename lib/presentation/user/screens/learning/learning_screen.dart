@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizdioms/presentation/providers/theme_mode_provider.dart';
 import 'package:quizdioms/presentation/user/screens/idioms/idiom_screen.dart';
 import 'package:quizdioms/presentation/user/screens/phrases/phrase_screen.dart';
 import 'package:quizdioms/presentation/user/widgets/user_app_bar.dart';
 
-class LearningScreen extends StatefulWidget {
+class LearningScreen extends ConsumerStatefulWidget {
   const LearningScreen({super.key});
 
   @override
-  State<LearningScreen> createState() => _LearningScreenState();
+  ConsumerState<LearningScreen> createState() => _LearningScreenState();
 }
 
-class _LearningScreenState extends State<LearningScreen> {
+class _LearningScreenState extends ConsumerState<LearningScreen> {
   bool showPhrases = true;
 
   @override
@@ -19,6 +21,10 @@ class _LearningScreenState extends State<LearningScreen> {
     final padding = isWeb
         ? const EdgeInsets.symmetric(horizontal: 36)
         : const EdgeInsets.symmetric(horizontal: 20);
+
+    final themeModeAsync = ref.watch(themeModeProvider);
+    final themeMode = themeModeAsync.value ?? ThemeMode.system;
+    final isDark = themeMode == ThemeMode.dark;
     return Scaffold(
       appBar: const UserAppBar(title: 'Learning'),
       backgroundColor: Colors.transparent,
@@ -38,8 +44,9 @@ class _LearningScreenState extends State<LearningScreen> {
                     });
                   },
                   borderRadius: BorderRadius.circular(12),
-                  selectedColor: Colors.white,
-                  fillColor: const Color(0xFF316E79),
+                  selectedColor: isDark ? Colors.black : Colors.white,
+                  fillColor: isDark ? Colors.white : const Color(0xFF316E79),
+                  color: isDark ? Colors.white : Colors.black,
                   children: const [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),

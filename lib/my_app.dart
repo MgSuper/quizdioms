@@ -91,7 +91,25 @@ class MyApp extends ConsumerWidget {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
+        textTheme:
+            GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme).copyWith(
+          headlineLarge: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyLarge: const TextStyle(
+            fontSize: 18,
+          ),
+          bodyMedium: const TextStyle(
+            fontSize: 16,
+          ),
+          bodySmall: const TextStyle(
+            fontSize: 14,
+          ),
+          labelSmall: const TextStyle(
+            fontSize: 12,
+          ),
+        ),
         scaffoldBackgroundColor: Colors.black,
       ),
       themeMode: themeModeAsync.value ?? ThemeMode.system,

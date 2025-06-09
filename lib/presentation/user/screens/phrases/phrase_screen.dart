@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quizdioms/presentation/providers/theme_mode_provider.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 import 'package:quizdioms/presentation/user/screens/phrases/providers/user_phrase_group_providers.dart';
 import 'package:quizdioms/presentation/user/screens/phrases/providers/user_phrase_metadata_providers.dart';
@@ -16,48 +17,40 @@ class PhraseScreen extends ConsumerWidget {
 
     final isWeb = MediaQuery.of(context).size.width >= 640;
 
+    final themeModeAsync = ref.watch(themeModeProvider);
+    final themeMode = themeModeAsync.value ?? ThemeMode.system;
+    final isDark = themeMode == ThemeMode.dark;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: ResponsiveWrapper(
         child: Column(
           children: [
             if (!state.isLoading && state.totalPages > 1)
-              Container(
-                color: Colors.transparent,
-                padding: isWeb
-                    ? EdgeInsets.zero
-                    : const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: List.generate(
-                    state.totalPages,
-                    (index) {
-                      final pageNumber = index + 1;
-                      final isSelected = pageNumber == state.currentPage;
-                      return GestureDetector(
-                        onTap: () => controller.goToPage(pageNumber),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 4),
-                          decoration: BoxDecoration(
-                            color:
-                                isSelected ? Color(0xFF316E79) : Colors.white,
-                            border: Border.all(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: Text(
-                            '$pageNumber',
-                            style: TextStyle(
-                              color: isSelected ? Colors.white : Colors.black87,
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: List.generate(
+                  state.totalPages,
+                  (index) => Padding(
+                    padding: index == 0
+                        ? const EdgeInsets.only(left: 16.0)
+                        : EdgeInsets.zero,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: (index + 1 == state.currentPage)
+                            ? Colors.white
+                            : Colors.grey.shade400,
+                        minimumSize: const Size(36, 36),
+                        padding: EdgeInsets.zero,
+                      ),
+                      onPressed: () {
+                        controller.goToPage(index + 1);
+                      },
+                      child: Text(
+                        '${index + 1}',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -87,7 +80,9 @@ class PhraseScreen extends ConsumerWidget {
                                       .textTheme
                                       .bodyMedium
                                       ?.copyWith(
-                                        color: Color(0xFF316E79),
+                                        color: isDark
+                                            ? Colors.white
+                                            : Color(0xFF316E79),
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
@@ -101,15 +96,16 @@ class PhraseScreen extends ConsumerWidget {
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                                trailing: isLearned
-                                    ? const Icon(
-                                        Icons.check_circle,
-                                        color: Color(0xFF316E79),
-                                      )
-                                    : const Icon(
-                                        Icons.check_circle,
-                                        color: Colors.grey,
-                                      ),
+                                trailing: Icon(
+                                  Icons.check_circle,
+                                  color: (isLearned && isDark)
+                                      ? Colors.white
+                                      : (isLearned && !isDark)
+                                          ? Color(0xFF316E79)
+                                          : (!isLearned && isDark)
+                                              ? Colors.grey.shade700
+                                              : Color(0xFF316E79),
+                                ),
                                 onTap: () {
                                   Navigator.push(
                                     context,

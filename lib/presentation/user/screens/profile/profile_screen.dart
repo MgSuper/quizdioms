@@ -45,8 +45,11 @@ class ProfileScreen extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     radius: 32,
-                    child: Text(avatarLetter,
-                        style: const TextStyle(fontSize: 24)),
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      avatarLetter,
+                      style: const TextStyle(fontSize: 24, color: Colors.black),
+                    ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
@@ -54,7 +57,7 @@ class ProfileScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(user.email ?? '',
-                            style: Theme.of(context).textTheme.titleMedium),
+                            style: Theme.of(context).textTheme.bodyMedium),
                         const SizedBox(height: 4),
                         Text(user.uid,
                             style: Theme.of(context).textTheme.bodySmall),
@@ -114,6 +117,7 @@ class ProfileScreen extends ConsumerWidget {
                   children: [
                     const Text('Dark Mode'),
                     Switch(
+                      activeColor: Colors.white,
                       value: isDark,
                       onChanged: (value) => themeNotifier.toggle(),
                     ),

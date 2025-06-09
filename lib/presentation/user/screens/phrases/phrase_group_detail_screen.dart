@@ -130,7 +130,7 @@ class PhraseGroupDetailScreen extends ConsumerWidget {
                     IconButton(
                       icon: Icon(Icons.volume_up, color: Colors.white),
                       tooltip: 'Listen',
-                      onPressed: () => speak(phrase.example2),
+                      onPressed: () => speak(phrase.example1),
                     ),
                   ],
                 ),

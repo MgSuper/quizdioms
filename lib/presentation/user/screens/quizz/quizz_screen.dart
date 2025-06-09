@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quizdioms/presentation/admin/manage_quizzes/domain/entities/quiz.dart';
+import 'package:quizdioms/presentation/providers/theme_mode_provider.dart';
 import 'package:quizdioms/presentation/user/navigation/responsive_wrapper.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/models/paginated_quiz_state.dart';
 import 'package:quizdioms/presentation/user/screens/quizz/providers/paginated_quiz_controller.dart';
@@ -26,6 +27,10 @@ class QuizzScreen extends ConsumerWidget {
 
     final isWeb = MediaQuery.of(context).size.width >= 640;
 
+    final themeModeAsync = ref.watch(themeModeProvider);
+    final themeMode = themeModeAsync.value ?? ThemeMode.system;
+    final isDark = themeMode == ThemeMode.dark;
+
     return Scaffold(
       appBar: const UserAppBar(title: 'Quizzes'),
       backgroundColor: Colors.transparent,
@@ -34,7 +39,7 @@ class QuizzScreen extends ConsumerWidget {
           data: (scoreMap) {
             return Column(
               children: [
-                _buildPaginationControls(state, quizController),
+                _buildPaginationControls(state, quizController, isDark),
                 Expanded(
                   child: ListView.builder(
                       padding: isWeb
@@ -63,6 +68,7 @@ class QuizzScreen extends ConsumerWidget {
                           percent,
                           isCompleted,
                           isLocked,
+                          isDark,
                         );
                       }),
                 ),
@@ -76,8 +82,8 @@ class QuizzScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPaginationControls(
-      PaginatedQuizState state, PaginatedQuizController controller) {
+  Widget _buildPaginationControls(PaginatedQuizState state,
+      PaginatedQuizController controller, bool isDark) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: List.generate(
@@ -87,15 +93,19 @@ class QuizzScreen extends ConsumerWidget {
               index == 0 ? const EdgeInsets.only(left: 16.0) : EdgeInsets.zero,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  index + 1 == state.currentPage ? Colors.white : Colors.grey,
+              backgroundColor: index + 1 == state.currentPage
+                  ? Colors.white
+                  : Colors.grey.shade400,
               minimumSize: const Size(36, 36),
               padding: EdgeInsets.zero,
             ),
             onPressed: () {
               controller.goToPage(index + 1);
             },
-            child: Text('${index + 1}'),
+            child: Text(
+              '${index + 1}',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
         ),
       ),
@@ -103,7 +113,7 @@ class QuizzScreen extends ConsumerWidget {
   }
 
   Widget _buildQuizCard(BuildContext context, Quiz quiz, int index,
-      double percent, bool isCompleted, bool isLocked) {
+      double percent, bool isCompleted, bool isLocked, bool isDark) {
     return AnimationConfiguration.staggeredList(
       position: index,
       duration: const Duration(milliseconds: 500),
@@ -135,13 +145,21 @@ class QuizzScreen extends ConsumerWidget {
                           '${(percent * 100).toStringAsFixed(0)}%',
                           style:
                               Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: const Color(0xFF316E79),
+                                    color: isDark
+                                        ? Colors.white
+                                        : const Color(0xFF316E79),
                                   ),
                         ),
-                        progressColor: isCompleted
+                        progressColor: (isCompleted && !isDark)
                             ? const Color(0xFF316E79)
+                            : (isCompleted && isDark)
+                                ? Colors.white
+                                : (!isCompleted && isDark)
+                                    ? Colors.white
+                                    : const Color(0xFF88A6AA),
+                        backgroundColor: isDark
+                            ? Colors.grey.shade600
                             : const Color(0xFF88A6AA),
-                        backgroundColor: const Color(0xFF88A6AA),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
@@ -154,7 +172,9 @@ class QuizzScreen extends ConsumerWidget {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                    color: const Color(0xFF316E79),
+                                    color: isDark
+                                        ? Colors.white
+                                        : const Color(0xFF316E79),
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),
